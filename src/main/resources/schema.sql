@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Country (
     code    INTEGER               COMMENT 'Уникальный идентификатор'    PRIMARY KEY,
     name    VARCHAR(20) NOT NULL  COMMENT 'Гражданство'
 );
-COMMENT ON TABLE Country IS 'Город';
+COMMENT ON TABLE Country IS 'Страна';
 
 CREATE TABLE IF NOT EXISTS UserInfo (
     id                  INTEGER                 COMMENT 'Уникальный идентификатор'  PRIMARY KEY AUTO_INCREMENT,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS UserInfo (
     middle_name         VARCHAR(50)             COMMENT 'Отчество пользователя',
     position_id         INTEGER     NOT NULL    COMMENT 'Идентификатор должности',
     phone               VARCHAR(20)             COMMENT 'Номер офиса',
-    citizenship_code    INTEGER                 COMMENT 'Код города',
+    citizenship_code    INTEGER                 COMMENT 'Код страны',
     is_identified       BOOLEAN                 COMMENT 'Состояние человека'
 );
 COMMENT ON TABLE UserInfo IS 'Пользователь';
