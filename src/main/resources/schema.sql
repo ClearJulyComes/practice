@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS Organization (
     id          INTEGER                 COMMENT 'Уникальный идентификатор'      PRIMARY KEY AUTO_INCREMENT,
+    version     INTEGER     NOT NULL    COMMENT 'Служебное поле hibernate',
     name        VARCHAR(50) NOT NULL    COMMENT 'Название организации',
     full_name   VARCHAR(50) NOT NULL    COMMENT 'Полное название организации',
     inn         VARCHAR(15) NOT NULL    COMMENT 'ИНН организации',
@@ -12,6 +13,7 @@ COMMENT ON TABLE Organization IS 'Организация';
 
 CREATE TABLE IF NOT EXISTS Office (
     id          INTEGER                 COMMENT 'Уникальный идентификатор'      PRIMARY KEY AUTO_INCREMENT,
+    version     INTEGER     NOT NULL    COMMENT 'Служебное поле hibernate',
     org_id      INTEGER     NOT NULL    COMMENT 'Индентификатор организации',
     name        VARCHAR(50)             COMMENT 'Название отдела',
     phone       VARCHAR(20)             COMMENT 'Номер офиса',
@@ -33,6 +35,7 @@ COMMENT ON TABLE Country IS 'Страна';
 
 CREATE TABLE IF NOT EXISTS User_Info (
     id                  INTEGER                 COMMENT 'Уникальный идентификатор'  PRIMARY KEY AUTO_INCREMENT,
+    version             INTEGER     NOT NULL    COMMENT 'Служебное поле hibernate',
     office_id           INTEGER     NOT NULL    COMMENT 'Индентификатор офиса',
     first_name          VARCHAR(50) NOT NULL    COMMENT 'Имя пользователя',
     second_name         VARCHAR(50)             COMMENT 'Фамилия пользователя',
@@ -52,6 +55,7 @@ COMMENT ON TABLE Doc IS 'Документ';
 
 CREATE TABLE IF NOT EXISTS User_Doc (
     id          INTEGER                     COMMENT 'Уникальный идентификатор'      PRIMARY KEY AUTO_INCREMENT,
+    version     INTEGER     NOT NULL        COMMENT 'Служебное поле hibernate',
     user_id     INTEGER     NOT NULL UNIQUE COMMENT 'Идентификатор пользователя',
     doc_name    VARCHAR(20) NOT NULL        COMMENT 'Название документа',
     doc_number  INTEGER     NOT NULL        COMMENT 'Номер документа',
