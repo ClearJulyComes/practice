@@ -2,13 +2,7 @@ package com.example.practice.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Data
@@ -16,7 +10,11 @@ import java.util.Collection;
 @Table(name = "Country")
 public class Country {
     @Id
-    @Column(name = "code")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "code", unique = true)
     private int code;
 
     @Column(name = "name", length = 50, nullable = false)

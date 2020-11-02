@@ -39,7 +39,7 @@ public class Office {
     private String address;
 
     @Column(name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     @ManyToOne
     @JoinColumn(name = "org_id")

@@ -40,16 +40,15 @@ public class UserInfo {
     @Column(name = "phone", length = 20)
     private String phone;
 
+    @Column(name = "position_id", nullable = false, length = 20)
+    private String positionId;
+
     @Column(name = "is_identified")
-    private boolean isIdentified;
+    private Boolean isIdentified;
 
     @ManyToOne
     @JoinColumn(name = "office_id")
     private Office officeId;
-
-    @ManyToOne
-    @JoinColumn(name = "position_id")
-    private UserPosition positionId;
 
     @ManyToOne
     @JoinColumn(name = "citizenship_code")

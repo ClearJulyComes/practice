@@ -2,17 +2,8 @@ package com.example.practice.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -31,6 +22,7 @@ public class UserDoc {
     private int docNumber;
 
     @Column(name = "doc_date", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date docDate;
 
     @OneToOne

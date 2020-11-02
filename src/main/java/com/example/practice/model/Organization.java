@@ -46,7 +46,7 @@ public class Organization {
     private String phone;
 
     @Column(name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     //@OneToMany(mappedBy = "orgId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //private Collection<Office> offices;
