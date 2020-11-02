@@ -41,7 +41,7 @@ public class OfficeServiceImpl implements OfficeService {
     private void updateFields(Office office, Office officeChanges){
         office.setName(officeChanges.getName());
         office.setAddress(officeChanges.getAddress());
-        office.setActive(officeChanges.isActive());
+        office.setIsActive(officeChanges.getIsActive());
         if (officeChanges.getPhone() != null){
             office.setPhone(officeChanges.getPhone());
         }
