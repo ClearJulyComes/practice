@@ -18,10 +18,11 @@ public class Doc {
     @Id
     @Column(name = "code")
     private int code;
-    @Column(name = "name", length = 20, nullable = false, unique = true)
+
+    @Column(name = "name", length = 60, nullable = false, unique = true)
     private String name;
 
-    //@OneToMany(mappedBy = "docName", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "docCode", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //private Collection<UserDoc> userDocs;
 
     public Doc(){

@@ -55,8 +55,9 @@ public class Organization {
 
     }
 
-    public Organization(int id, String name, String fullName, String inn, String kpp, String address) {
+    public Organization(int id, int version, String name, String fullName, String inn, String kpp, String address) {
         this.id = id;
+        this.version = version;
         this.name = name;
         this.fullName = fullName;
         this.inn = inn;

@@ -38,18 +38,18 @@ public class UserDoc {
     private UserInfo userId;
 
     @ManyToOne
-    @JoinColumn(name = "doc_name")
-    private Doc docName;
+    @JoinColumn(name = "doc_code")
+    private Doc docCode;
 
     public UserDoc(){
 
     }
 
-    public UserDoc(int id, int docNumber, Date docDate, UserInfo userId, Doc docName) {
+    public UserDoc(int id, int docNumber, Date docDate, UserInfo userId, Doc docCode) {
         this.id = id;
         this.docNumber = docNumber;
         this.docDate = docDate;
         this.userId = userId;
-        this.docName = docName;
+        this.docCode = docCode;
     }
 }
