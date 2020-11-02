@@ -7,9 +7,6 @@ INSERT INTO Office (id, version, org_id, name, address, is_active ) VALUES ( 2, 
 INSERT INTO Office (id, version, org_id, name ) VALUES ( 3, 0, 2, 'Testers' );
 INSERT INTO Office (id, version, org_id, name ) VALUES ( 4, 0, 2, 'Jurists' );
 
-INSERT INTO User_Position (id, position ) VALUES ( 1, 'Director' );
-INSERT INTO User_Position (id, position ) VALUES ( 2, 'Developer' );
-
 INSERT INTO Country(name,code) VALUES ('Australia',36);
 INSERT INTO Country(name,code) VALUES ('Austria',40);
 INSERT INTO Country(name,code) VALUES ('Azerbaijan',31);
@@ -250,11 +247,11 @@ INSERT INTO Country(name,code) VALUES ('French Southern Territories',260);
 INSERT INTO Country(name,code) VALUES ('British Indian Ocean Territory',86);
 INSERT INTO Country(name,code) VALUES ('United States Minor Outlying Islands',581);
 
-INSERT INTO User_Info (id, version, office_id, first_name, position_id, citizenship_code ) VALUES ( 1, 0, 1, 'Viktor', 1, 86 );
-INSERT INTO User_Info (id, version, office_id, first_name, position_id, citizenship_code ) VALUES ( 2, 0, 1, 'Andrey', 2, 218 );
-INSERT INTO User_Info (id, version, office_id, first_name, position_id ) VALUES ( 3, 0, 1, 'Alex', 2 );
-INSERT INTO User_Info (id, version, office_id, first_name, position_id ) VALUES ( 4, 0, 2, 'Andrey', 1 );
-INSERT INTO User_Info (id, version, office_id, first_name, position_id ) VALUES ( 5, 0, 3, 'Andrey', 1 );
+INSERT INTO User_Info (id, version, office_id, first_name, position, citizenship_code ) VALUES ( 1, 0, 1, 'Viktor', 'Developer', 86 );
+INSERT INTO User_Info (id, version, office_id, first_name, position, citizenship_code ) VALUES ( 2, 0, 1, 'Andrey', 'QA', 218 );
+INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 3, 0, 1, 'Alex', 'Developer' );
+INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 4, 0, 2, 'Andrey', 'HR' );
+INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 5, 0, 3, 'Andrey', 'HR' );
 
 INSERT INTO Doc (code, name ) VALUES ( 3, 'Свидетельство о рождении' );
 INSERT INTO Doc (code, name ) VALUES ( 7, 'Военный билет' );

@@ -22,15 +22,10 @@ CREATE TABLE IF NOT EXISTS Office (
 );
 COMMENT ON TABLE Office IS 'Офис';
 
-CREATE TABLE IF NOT EXISTS User_Position (
-    id          INTEGER                         COMMENT 'Уникальный идентификатор'  PRIMARY KEY AUTO_INCREMENT,
-    position    VARCHAR(20) NOT NULL    UNIQUE  COMMENT 'Название должности'
-);
-COMMENT ON TABLE User_Position IS 'Должность';
-
 CREATE TABLE IF NOT EXISTS Country (
-    code    INTEGER               COMMENT 'Уникальный идентификатор'    PRIMARY KEY,
-    name    VARCHAR(50) NOT NULL  COMMENT 'Гражданство'
+    id      INTEGER                     COMMENT 'Уникальный идентификатор'  PRIMARY KEY AUTO_INCREMENT,
+    code    INTEGER     NOT NULL UNIQUE COMMENT 'Код страны',
+    name    VARCHAR(50) NOT NULL        COMMENT 'Гражданство'
 );
 COMMENT ON TABLE Country IS 'Страна';
 
@@ -41,7 +36,7 @@ CREATE TABLE IF NOT EXISTS User_Info (
     first_name          VARCHAR(50) NOT NULL    COMMENT 'Имя пользователя',
     second_name         VARCHAR(50)             COMMENT 'Фамилия пользователя',
     middle_name         VARCHAR(50)             COMMENT 'Отчество пользователя',
-    position_id         INTEGER     NOT NULL    COMMENT 'Идентификатор должности',
+    position            VARCHAR(20) NOT NULL    COMMENT 'Название должности',
     phone               VARCHAR(20)             COMMENT 'Номер офиса',
     citizenship_code    INTEGER                 COMMENT 'Код страны',
     is_identified       BOOLEAN                 COMMENT 'Состояние человека'
@@ -49,7 +44,8 @@ CREATE TABLE IF NOT EXISTS User_Info (
 COMMENT ON TABLE User_Info IS 'Пользователь';
 
 CREATE TABLE IF NOT EXISTS Doc (
-    code    INTEGER                      COMMENT 'Код документа'        PRIMARY KEY,
+    id      INTEGER                       COMMENT 'Уникальный идентификатор'  PRIMARY KEY AUTO_INCREMENT,
+    code    INTEGER      NOT NULL UNIQUE  COMMENT 'Код документа',
     name    VARCHAR(150) NOT NULL UNIQUE  COMMENT 'Название документа'
 );
 COMMENT ON TABLE Doc IS 'Документ';
@@ -65,17 +61,12 @@ CREATE TABLE IF NOT EXISTS User_Doc (
 );
 COMMENT ON TABLE User_Doc IS 'Документ пользователя';
 
-CREATE INDEX IX_Organization_Is_Active ON Organization (is_active);
-
-CREATE INDEX IX_Office_Is_Active ON Office (is_active);
 CREATE INDEX IX_Office_Org_Id ON Office (org_id);
 ALTER TABLE Office ADD FOREIGN KEY (org_id) REFERENCES Organization (id);
 
 CREATE INDEX IX_User_Info_Office_Id ON User_Info (office_id);
-CREATE INDEX IX_User_Info_Position_Id ON User_Info (position_id);
 CREATE INDEX IX_User_Info_Citizenship_Code ON User_Info (citizenship_code);
 ALTER TABLE User_Info ADD FOREIGN KEY (office_id) REFERENCES Office (id);
-ALTER TABLE User_Info ADD FOREIGN KEY (position_id) REFERENCES User_Position (id);
 ALTER TABLE User_Info ADD FOREIGN KEY (citizenship_code) REFERENCES Country (code);
 
 CREATE INDEX IX_User_Doc_Doc_Name ON User_Doc (doc_code);
