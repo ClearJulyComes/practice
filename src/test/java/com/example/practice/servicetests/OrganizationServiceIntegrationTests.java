@@ -37,11 +37,11 @@ public class OrganizationServiceIntegrationTests {
     public void whenUpdate_returnUpdatedObj(){
         Organization organization = new Organization( 1, 0, "OOO", "Tide",
                 "34284438932", "1111333432", "Moscow, 22" );
-        organization.setActive(true);
+        organization.setIsActive(true);
         Organization expectedOrganization = new Organization( 1, 0, "OOO", "Tide",
                 "34284438932", "1111333432", "Moscow, 22" );
         expectedOrganization.setPhone("89988");
-        expectedOrganization.setActive(true);
+        expectedOrganization.setIsActive(true);
         organizationService.update(organization);
         Assert.assertEquals(Optional.of(expectedOrganization), organizationRepository.findById(1));
     }

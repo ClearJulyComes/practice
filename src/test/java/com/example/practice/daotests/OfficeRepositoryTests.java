@@ -33,16 +33,16 @@ public class OfficeRepositoryTests {
     public void whenFindByIsActive_thenReturnOffices(){
         Organization organization = new Organization( 1, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22" );
-        organization.setActive(true);
+        organization.setIsActive(true);
         organization.setPhone("89988");
         Office office = new Office( 1, organization);
-        office.setActive(true);
+        office.setIsActive(true);
         office.setName("HR");
         office.setVersion(0);
         office.setAddress("Moscow, 22");
         expected.add(office);
         Office office1 = new Office( 2, organization);
-        office1.setActive(true);
+        office1.setIsActive(true);
         office1.setName("Developers");
         office1.setVersion(0);
         office1.setAddress("Moscow, 22");
@@ -55,10 +55,10 @@ public class OfficeRepositoryTests {
     public void whenFindByIsActive_thenReturnOfficesFalse(){
         Organization organization = new Organization( 1, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22" );
-        organization.setActive(true);
+        organization.setIsActive(true);
         organization.setPhone("89988");
         Office office = new Office( 1, organization);
-        office.setActive(true);
+        office.setIsActive(true);
         office.setName("HR");
         expected.add(office);
 

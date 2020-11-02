@@ -27,9 +27,9 @@ public class OrganizationRepositoryTests {
                 "34284438932", "1111333432", "Moscow, 22" );
         Organization organization1 = new Organization( 2, 0, "Pepsi", "Pepsi-Cola HBC",
                 "11114438932", "2222333432", "Moscow, 20" );
-        organization.setActive(true);
+        organization.setIsActive(true);
         organization.setPhone("89988");
-        organization1.setActive(true);
+        organization1.setIsActive(true);
         expected.add(organization);
         expected.add(organization1);
 
@@ -41,7 +41,7 @@ public class OrganizationRepositoryTests {
         List<Organization> expected = new ArrayList<>();
         Organization organization = new Organization( 1, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22" );
-        organization.setActive(true);
+        organization.setIsActive(true);
         organization.setPhone("89988");
         expected.add(organization);
 

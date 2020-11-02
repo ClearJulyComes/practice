@@ -43,7 +43,7 @@ public class OrganizationServiceTests {
         List<Organization> organizations = new ArrayList<>();
         Organization organization = new Organization( 1, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22" );
-        organization.setActive(true);
+        organization.setIsActive(true);
         organizations.add(organization);
         Mockito.when(mockOrganizationRepository.findByIsActive(true)).thenReturn(Optional.of(organizations));
 

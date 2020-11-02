@@ -2,6 +2,8 @@
 
 import com.example.practice.service.OfficeServiceImpl;
 import com.example.practice.serviceinterface.OfficeService;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -18,5 +20,13 @@ public class OfficeServiceTests {
         public OfficeService officeService() {
             return new OfficeServiceImpl();
         }
+    }
+
+    @Test
+    public void test(){
+        Integer integer = 200;
+        integer += 400;
+        int i = 600;
+        Assert.assertTrue(integer == i);
     }
 } */
