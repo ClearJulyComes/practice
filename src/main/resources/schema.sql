@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Office (
     org_id      INTEGER     NOT NULL    COMMENT 'Индентификатор организации',
     name        VARCHAR(50)             COMMENT 'Название отдела',
     phone       VARCHAR(20)             COMMENT 'Номер офиса',
+    address     VARCHAR(80)             COMMENT 'Адрес офиса',
     is_active   BOOLEAN                 COMMENT 'Состояние офиса'
 );
 COMMENT ON TABLE Office IS 'Офис';
@@ -29,7 +30,7 @@ COMMENT ON TABLE User_Position IS 'Должность';
 
 CREATE TABLE IF NOT EXISTS Country (
     code    INTEGER               COMMENT 'Уникальный идентификатор'    PRIMARY KEY,
-    name    VARCHAR(20) NOT NULL  COMMENT 'Гражданство'
+    name    VARCHAR(50) NOT NULL  COMMENT 'Гражданство'
 );
 COMMENT ON TABLE Country IS 'Страна';
 
@@ -49,7 +50,7 @@ COMMENT ON TABLE User_Info IS 'Пользователь';
 
 CREATE TABLE IF NOT EXISTS Doc (
     code    INTEGER                      COMMENT 'Код документа'        PRIMARY KEY,
-    name    VARCHAR(20) NOT NULL UNIQUE  COMMENT 'Название документа'
+    name    VARCHAR(150) NOT NULL UNIQUE  COMMENT 'Название документа'
 );
 COMMENT ON TABLE Doc IS 'Документ';
 
@@ -57,10 +58,10 @@ CREATE TABLE IF NOT EXISTS User_Doc (
     id          INTEGER                     COMMENT 'Уникальный идентификатор'      PRIMARY KEY AUTO_INCREMENT,
     version     INTEGER     NOT NULL        COMMENT 'Служебное поле hibernate',
     user_id     INTEGER     NOT NULL UNIQUE COMMENT 'Идентификатор пользователя',
-    doc_name    VARCHAR(20) NOT NULL        COMMENT 'Название документа',
+    doc_code    VARCHAR(20) NOT NULL        COMMENT 'Название документа',
     doc_number  INTEGER     NOT NULL        COMMENT 'Номер документа',
     doc_date    DATE        NOT NULL        COMMENT 'Дата выдачи документа',
-    CONSTRAINT UserUC UNIQUE (doc_name, doc_number)
+    CONSTRAINT UserUC UNIQUE (doc_code, doc_number)
 );
 COMMENT ON TABLE User_Doc IS 'Документ пользователя';
 
@@ -77,7 +78,7 @@ ALTER TABLE User_Info ADD FOREIGN KEY (office_id) REFERENCES Office (id);
 ALTER TABLE User_Info ADD FOREIGN KEY (position_id) REFERENCES User_Position (id);
 ALTER TABLE User_Info ADD FOREIGN KEY (citizenship_code) REFERENCES Country (code);
 
-CREATE INDEX IX_User_Doc_Doc_Name ON User_Doc (doc_name);
+CREATE INDEX IX_User_Doc_Doc_Name ON User_Doc (doc_code);
 CREATE UNIQUE INDEX UX_User_Doc_User_Id ON User_Doc (user_id);
-ALTER TABLE User_Doc ADD FOREIGN KEY (doc_name) REFERENCES Doc (name);
+ALTER TABLE User_Doc ADD FOREIGN KEY (doc_code) REFERENCES Doc (code) ;
 ALTER TABLE User_Doc ADD FOREIGN KEY (user_id) REFERENCES User_Info (id);

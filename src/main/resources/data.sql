@@ -1,9 +1,9 @@
-INSERT INTO Organization (id, version, name, full_name, inn, kpp, address) VALUES ( 1, 0, 'Cola', 'Coca-Cola', '34284438932',
-                                                                          '1111333432', 'Moscow, 22' );
-INSERT INTO Organization (id, version, name, full_name, inn, kpp, address) VALUES ( 2, 0, 'Pepsi', 'Pepsi-Cola HBC', '11114438932',
-                                                                           '2222333432', 'Moscow, 20' );
-INSERT INTO Office (id, version, org_id, name ) VALUES ( 1, 0, 1, 'HR' );
-INSERT INTO Office (id, version, org_id, name ) VALUES ( 2, 0, 1, 'Developers' );
+INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active, phone) VALUES ( 1, 0, 'Cola', 'Coca-Cola', '34284438932',
+                                                                          '1111333432', 'Moscow, 22', true, '89988' );
+INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active) VALUES ( 2, 0, 'Pepsi', 'Pepsi-Cola HBC', '11114438932',
+                                                                           '2222333432', 'Moscow, 20', true );
+INSERT INTO Office (id, version, org_id, name, address, is_active ) VALUES ( 1, 0, 1, 'HR', 'Moscow, 22', true );
+INSERT INTO Office (id, version, org_id, name, address, is_active ) VALUES ( 2, 0, 1, 'Developers', 'Moscow, 22', true );
 INSERT INTO Office (id, version, org_id, name ) VALUES ( 3, 0, 2, 'Testers' );
 INSERT INTO Office (id, version, org_id, name ) VALUES ( 4, 0, 2, 'Jurists' );
 
@@ -250,8 +250,8 @@ INSERT INTO Country(name,code) VALUES ('French Southern Territories',260);
 INSERT INTO Country(name,code) VALUES ('British Indian Ocean Territory',86);
 INSERT INTO Country(name,code) VALUES ('United States Minor Outlying Islands',581);
 
-INSERT INTO User_Info (id, version, office_id, first_name, position_id, citizenship_code ) VALUES ( 1, 0, 1, 'Viktor', 1, 422 );
-INSERT INTO User_Info (id, version, office_id, first_name, position_id, citizenship_code ) VALUES ( 2, 0, 1, 'Andrey', 2, 787 );
+INSERT INTO User_Info (id, version, office_id, first_name, position_id, citizenship_code ) VALUES ( 1, 0, 1, 'Viktor', 1, 86 );
+INSERT INTO User_Info (id, version, office_id, first_name, position_id, citizenship_code ) VALUES ( 2, 0, 1, 'Andrey', 2, 218 );
 INSERT INTO User_Info (id, version, office_id, first_name, position_id ) VALUES ( 3, 0, 1, 'Alex', 2 );
 INSERT INTO User_Info (id, version, office_id, first_name, position_id ) VALUES ( 4, 0, 2, 'Andrey', 1 );
 INSERT INTO User_Info (id, version, office_id, first_name, position_id ) VALUES ( 5, 0, 3, 'Andrey', 1 );
@@ -260,21 +260,20 @@ INSERT INTO Doc (code, name ) VALUES ( 3, 'Свидетельство о рож�
 INSERT INTO Doc (code, name ) VALUES ( 7, 'Военный билет' );
 INSERT INTO Doc (code, name ) VALUES ( 8, 'Временное удостоверение, выданное взамен военного билета' );
 INSERT INTO Doc (code, name ) VALUES ( 10, 'Паспорт иностранного гражданина' );
-INSERT INTO Doc (code, name ) VALUES ( 11, 'Свидетельство о рассмотрении ходатайства о признании лица
-беженцем на территории Российской Федерации по существу' );
+INSERT INTO Doc (code, name ) VALUES ( 11, 'Свидетельство о рассмотрении лица кем то там' );
 INSERT INTO Doc (code, name ) VALUES ( 12, 'Вид на жительство в Российской Федерации' );
 INSERT INTO Doc (code, name ) VALUES ( 13, 'Удостоверение беженца' );
 INSERT INTO Doc (code, name ) VALUES ( 15, 'Разрешение на временное проживание в Российской Федерации' );
-INSERT INTO Doc (code, name ) VALUES ( 18, 'Свидетельство о предоставлении временного убежища на территории
-Российской Федерации' );
+INSERT INTO Doc (code, name ) VALUES ( 18, 'Свидетельство о предоставлении временного убежища на территории Российской' ||
+ ' Федерации' );
 INSERT INTO Doc (code, name ) VALUES ( 21, 'Паспорт гражданина Российской Федерации' );
 INSERT INTO Doc (code, name ) VALUES ( 23, 'Свидетельство о рождении, выданное уполномоченным органом
 иностранного государства' );
 INSERT INTO Doc (code, name ) VALUES ( 24, 'Удостоверение личности военнослужащего Российской Федерации' );
 INSERT INTO Doc (code, name ) VALUES ( 91, 'Иные документы' );
 
-INSERT INTO User_Doc (id, version, user_id, doc_name, doc_number, doc_date ) VALUES ( 1, 0, 1, 'Driver ID', 1111, '2011-11-22' );
-INSERT INTO User_Doc (id, version, user_id, doc_name, doc_number, doc_date ) VALUES ( 2, 0, 2, 'Driver ID', 1112, '2010-08-02' );
-INSERT INTO User_Doc (id, version, user_id, doc_name, doc_number, doc_date ) VALUES ( 3, 0, 3, 'Passport', 2311, '2008-02-01' );
-INSERT INTO User_Doc (id, version, user_id, doc_name, doc_number, doc_date ) VALUES ( 4, 0, 4, 'Passport', 3344, '2015-10-13' );
-INSERT INTO User_Doc (id, version, user_id, doc_name, doc_number, doc_date ) VALUES ( 5, 0, 5, 'Passport', 2433, '2014-08-12' );
+INSERT INTO User_Doc (id, version, user_id, doc_code, doc_number, doc_date ) VALUES ( 1, 0, 1, 12, 1111, '2011-11-22' );
+INSERT INTO User_Doc (id, version, user_id, doc_code, doc_number, doc_date ) VALUES ( 2, 0, 2, 12, 1112, '2010-08-02' );
+INSERT INTO User_Doc (id, version, user_id, doc_code, doc_number, doc_date ) VALUES ( 3, 0, 3, 21, 2311, '2008-02-01' );
+INSERT INTO User_Doc (id, version, user_id, doc_code, doc_number, doc_date ) VALUES ( 4, 0, 4, 21, 3344, '2015-10-13' );
+INSERT INTO User_Doc (id, version, user_id, doc_code, doc_number, doc_date ) VALUES ( 5, 0, 5, 3, 2433, '2014-08-12' );
