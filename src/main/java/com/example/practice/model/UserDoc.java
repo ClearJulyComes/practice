@@ -18,30 +18,25 @@ public class UserDoc {
     @Column(name = "version")
     private Integer version;
 
-    @Column(name = "doc_number", nullable = false)
-    private int docNumber;
+    @Column(name = "doc_number", nullable = false, length = 30)
+    private String docNumber;
 
     @Column(name = "doc_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date docDate;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserInfo userId;
-
     @ManyToOne
-    @JoinColumn(name = "doc_code")
-    private Doc docCode;
+    @JoinColumn(name = "doc_id")
+    private Doc docId;
 
     public UserDoc(){
 
     }
 
-    public UserDoc(int id, int docNumber, Date docDate, UserInfo userId, Doc docCode) {
+    public UserDoc(int id, String docNumber, Date docDate, Doc docId) {
         this.id = id;
         this.docNumber = docNumber;
         this.docDate = docDate;
-        this.userId = userId;
-        this.docCode = docCode;
+        this.docId = docId;
     }
 }

@@ -40,8 +40,8 @@ public class UserInfo {
     @Column(name = "phone", length = 20)
     private String phone;
 
-    @Column(name = "position_id", nullable = false, length = 20)
-    private String positionId;
+    @Column(name = "position", nullable = false, length = 20)
+    private String position;
 
     @Column(name = "is_identified")
     private Boolean isIdentified;
@@ -51,11 +51,12 @@ public class UserInfo {
     private Office officeId;
 
     @ManyToOne
-    @JoinColumn(name = "citizenship_code")
-    private Country citizenshipCode;
+    @JoinColumn(name = "country_id")
+    private Country countryId;
 
-    @OneToOne(mappedBy = "userId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private UserDoc userDoc;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserDoc userDocId;
 
     public UserInfo(){
 
