@@ -1,9 +1,11 @@
-INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active, phone) VALUES ( 1, 0, 'Cola', 'Coca-Cola', '34284438932',
-                                                                          '1111333432', 'Moscow, 22', true, '89988' );
-INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active) VALUES ( 2, 0, 'Pepsi', 'Pepsi-Cola HBC', '11114438932',
-                                                                           '2222333432', 'Moscow, 20', true );
+INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active, phone) VALUES ( 1, 0, 'Cola',
+ 'Coca-Cola', '34284438932', '1111333432', 'Moscow, 22', true, '89988' );
+INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active) VALUES ( 2, 0, 'Cola',
+ 'Coca-Cola', '34284438932', '1111333432', 'Moscow, 22', false );
+INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active) VALUES ( 3, 0, 'Pepsi',
+ 'Pepsi-Cola HBC', '11114438932', '2222333432', 'Moscow, 20', true );
 INSERT INTO Office (id, version, org_id, name, address, is_active ) VALUES ( 1, 0, 1, 'HR', 'Moscow, 22', true );
-INSERT INTO Office (id, version, org_id, name, address, is_active ) VALUES ( 2, 0, 1, 'Developers', 'Moscow, 22', true );
+INSERT INTO Office (id, version, org_id, name, address, is_active ) VALUES ( 2, 0, 1, 'Developers', 'Moscow, 22', true);
 INSERT INTO Office (id, version, org_id, name ) VALUES ( 3, 0, 2, 'Testers' );
 INSERT INTO Office (id, version, org_id, name ) VALUES ( 4, 0, 2, 'Jurists' );
 
@@ -263,14 +265,15 @@ INSERT INTO Doc (code, name ) VALUES ( 23, 'Свидетельство о рож
 INSERT INTO Doc (code, name ) VALUES ( 24, 'Удостоверение личности военнослужащего Российской Федерации' );
 INSERT INTO Doc (code, name ) VALUES ( 91, 'Иные документы' );
 
-INSERT INTO User_Doc (id, version, doc_id, doc_number, doc_date ) VALUES ( 1, 0, 1, '1111', '2011-11-22' );
-INSERT INTO User_Doc (id, version, doc_id, doc_number, doc_date ) VALUES ( 2, 0, 3, '1112', '2010-08-02' );
-INSERT INTO User_Doc (id, version, doc_id, doc_number, doc_date ) VALUES ( 3, 0, 2, '2311', '2008-02-01' );
-INSERT INTO User_Doc (id, version, doc_id, doc_number, doc_date ) VALUES ( 4, 0, 2, '3344', '2015-10-13' );
-INSERT INTO User_Doc (id, version, doc_id, doc_number, doc_date ) VALUES ( 5, 0, 4, '2433', '2014-08-12' );
+INSERT INTO User_Info (id, version, office_id, first_name, position, country_id ) VALUES ( 1, 0, 1, 'Viktor', 'Developer', 4 );
+INSERT INTO User_Info (id, version, office_id, first_name, position, country_id ) VALUES ( 2, 0, 1, 'Andrey', 'QA',  5 );
+INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 3, 0, 1, 'Alex', 'Developer' );
+INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 4, 0, 2, 'Andrey', 'HR' );
+INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 5, 0, 3, 'Andrey', 'HR' );
 
-INSERT INTO User_Info (id, version, office_id, first_name, position, user_doc_id, country_id ) VALUES ( 1, 0, 1, 'Viktor', 'Developer', 1, 4 );
-INSERT INTO User_Info (id, version, office_id, first_name, position, user_doc_id, country_id ) VALUES ( 2, 0, 1, 'Andrey', 'QA', 2,  5 );
-INSERT INTO User_Info (id, version, office_id, first_name, position, user_doc_id ) VALUES ( 3, 0, 1, 'Alex', 'Developer', 3 );
-INSERT INTO User_Info (id, version, office_id, first_name, position, user_doc_id ) VALUES ( 4, 0, 2, 'Andrey', 'HR', 4 );
-INSERT INTO User_Info (id, version, office_id, first_name, position, user_doc_id ) VALUES ( 5, 0, 3, 'Andrey', 'HR', 5 );
+
+INSERT INTO User_Doc (user_id, version, doc_id, doc_number, doc_date ) VALUES ( 1, 0, 1, '1111', '2011-11-22' );
+INSERT INTO User_Doc (user_id, version, doc_id, doc_number, doc_date ) VALUES ( 2, 0, 3, '1112', '2010-08-02' );
+INSERT INTO User_Doc (user_id, version, doc_id, doc_number, doc_date ) VALUES ( 3, 0, 2, '2311', '2008-02-01' );
+INSERT INTO User_Doc (user_id, version, doc_id, doc_number, doc_date ) VALUES ( 4, 0, 2, '3344', '2015-10-13' );
+INSERT INTO User_Doc (user_id, version, doc_id, doc_number, doc_date ) VALUES ( 5, 0, 4, '2433', '2014-08-12' );

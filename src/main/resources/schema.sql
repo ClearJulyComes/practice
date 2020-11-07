@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS User_Info (
     position            VARCHAR(20) NOT NULL        COMMENT 'Название должности',
     phone               VARCHAR(20)                 COMMENT 'Номер офиса',
     country_id          INTEGER                     COMMENT 'Идентификатор документа',
-    user_doc_id         INTEGER     NOT NULL UNIQUE COMMENT 'Идентификатор страны',
     is_identified       BOOLEAN                     COMMENT 'Состояние человека'
 );
 COMMENT ON TABLE User_Info IS 'Пользователь';
@@ -52,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Doc (
 COMMENT ON TABLE Doc IS 'Документ';
 
 CREATE TABLE IF NOT EXISTS User_Doc (
-    id          INTEGER                     COMMENT 'Уникальный идентификатор'      PRIMARY KEY AUTO_INCREMENT,
+    user_id     INTEGER                     COMMENT 'Уникальный идентификатор'      PRIMARY KEY,
     version     INTEGER     NOT NULL        COMMENT 'Служебное поле hibernate',
     doc_id      INTEGER     NOT NULL        COMMENT 'Идентификатор документа',
     doc_number  VARCHAR(30) NOT NULL        COMMENT 'Номер документа',
@@ -66,10 +65,9 @@ ALTER TABLE Office ADD FOREIGN KEY (org_id) REFERENCES Organization (id);
 
 CREATE INDEX IX_User_Info_Office_Id ON User_Info (office_id);
 CREATE INDEX IX_User_Info_Citizenship_Code ON User_Info (country_id);
-CREATE UNIQUE INDEX UX_User_Info_User_Doc_Id ON User_Info (user_doc_id);
 ALTER TABLE User_Info ADD FOREIGN KEY (office_id) REFERENCES Office (id);
 ALTER TABLE User_Info ADD FOREIGN KEY (country_id) REFERENCES Country (id);
-ALTER TABLE User_Info ADD FOREIGN KEY (user_doc_id) REFERENCES User_Doc (id);
+ALTER TABLE User_Doc ADD FOREIGN KEY (user_id) REFERENCES User_Info (id);
 
 CREATE INDEX IX_User_Doc_Doc_Name ON User_Doc (doc_id);
 ALTER TABLE User_Doc ADD FOREIGN KEY (doc_id) REFERENCES Doc (id) ;

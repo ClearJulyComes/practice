@@ -1,6 +1,6 @@
 package com.example.practice.mappertests;
 
-import com.example.practice.dto.OrganizationDto;
+import com.example.practice.dto.OrganizationIdAndFilterDto;
 import com.example.practice.model.Organization;
 import com.example.practice.model.mapper.CustomMapperFactory;
 import ma.glasnost.orika.MapperFactory;
@@ -26,9 +26,9 @@ public class OrganizationMapperTests {
                 "11114438932", "2222333432", "Moscow, 20" );
         organization.setIsActive(true);
         organization.setPhone("89988");
-        OrganizationDto expected = new OrganizationDto( 2, "Pepsi", "Pepsi-Cola HBC",
+        OrganizationIdAndFilterDto expected = new OrganizationIdAndFilterDto( 2, "Pepsi", "Pepsi-Cola HBC",
                 "11114438932", "2222333432", "Moscow, 20", "89988", true);
-        OrganizationDto actual = mapperFactory.getMapperFacade().map(organization, OrganizationDto.class);
+        OrganizationIdAndFilterDto actual = mapperFactory.getMapperFacade().map(organization, OrganizationIdAndFilterDto.class);
         Assert.assertEquals(expected, actual);
     }
 
@@ -38,9 +38,9 @@ public class OrganizationMapperTests {
                 "11114438932", "2222333432", "Moscow, 20" );
         organization.setIsActive(true);
         organization.setPhone("89988");
-        OrganizationDto expected = new OrganizationDto( 2, "Coca-Cola", "HeyNaNaNa",
+        OrganizationIdAndFilterDto expected = new OrganizationIdAndFilterDto( 2, "Coca-Cola", "HeyNaNaNa",
                 "11114438932", "2222333432", "Moscow, 20", "89988", true);
-        OrganizationDto actual = mapperFactory.getMapperFacade().map(organization, OrganizationDto.class);
+        OrganizationIdAndFilterDto actual = mapperFactory.getMapperFacade().map(organization, OrganizationIdAndFilterDto.class);
         Assert.assertNotEquals(expected, actual);
     }
 }

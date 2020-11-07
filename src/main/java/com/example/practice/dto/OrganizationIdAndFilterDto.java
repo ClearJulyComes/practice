@@ -13,7 +13,8 @@ public class OrganizationDto {
     private String phone;
     private Boolean isActive;
 
-    public OrganizationDto(int id, String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
+    public OrganizationDto(int id, String name, String fullName, String inn, String kpp, String address,
+                           String phone, Boolean isActive) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
@@ -23,4 +24,5 @@ public class OrganizationDto {
         this.phone = phone;
         this.isActive = isActive;
     }
+
 }

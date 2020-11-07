@@ -37,4 +37,5 @@ public class UserDto {
         this.docNumber = docNumber;
         this.docDate = docDate;
     }
+    public UserDto(){}
 }
