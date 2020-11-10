@@ -1,166 +1,166 @@
 {
-	"info": {
-		"_postman_id": "89d8de15-2351-4568-ac16-f4ab2c3867d6",
-		"name": "Test organization",
-		"description": "Test for /organization",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "http://localhost:8888/api/organization/list",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\":\"Cola\",\"inn\":null,\"isActive\":\"true\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/organization/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"organization",
-						"list"
-					]
-				},
-				"description": "Get list by: name and isActive."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/organization/list",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\":\"Cola\",\"inn\":null,\"isActive\":null}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/organization/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"organization",
-						"list"
-					]
-				},
-				"description": "Get list by: name."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/organization/list",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\":\"Cola\",\"inn\":\"34284438932\",\"isActive\":\"true\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/organization/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"organization",
-						"list"
-					]
-				},
-				"description": "Get list by: name, inn and isActive."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/organization/save",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"name\":\"Nike\",\"fullName\":\"Nike Org\", \"inn\":\"1111\",\"kpp\":\"42233\",\"address\":\"Moscow, 11\",\"phone\":null,\"isActive\":true}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/organization/save",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"organization",
-						"save"
-					]
-				},
-				"description": "Saving organization."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/organization/update",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"id\":4,\"name\":\"Not nike\",\"fullName\":\"Not nike Org\", \"inn\":\"1111\",\"kpp\":\"42233\",\"address\":\"Moscow, 11\",\"phone\":\"8779\",\"isActive\":true}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/organization/update",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"organization",
-						"update"
-					]
-				},
-				"description": "Update saved before organization."
-			},
-			"response": []
-		}
-	],
-	"protocolProfileBehavior": {}
+  "info": {
+    "_postman_id": "89d8de15-2351-4568-ac16-f4ab2c3867d6",
+    "name": "Test organization",
+    "description": "Test for /organization",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8888/api/organization/list",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Cola\",\"inn\":null,\"isActive\":\"true\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/organization/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "organization",
+            "list"
+          ]
+        },
+        "description": "Get list by: name and isActive."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/organization/list",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Cola\",\"inn\":null,\"isActive\":null}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/organization/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "organization",
+            "list"
+          ]
+        },
+        "description": "Get list by: name."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/organization/list",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Cola\",\"inn\":\"34284438932\",\"isActive\":\"true\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/organization/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "organization",
+            "list"
+          ]
+        },
+        "description": "Get list by: name, inn and isActive."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/organization/save",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Nike\",\"fullName\":\"Nike Org\", \"inn\":\"1111\",\"kpp\":\"42233\",\"address\":\"Moscow, 11\",\"phone\":null,\"isActive\":true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/organization/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "organization",
+            "save"
+          ]
+        },
+        "description": "Saving organization."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/organization/update",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":4,\"name\":\"Not nike\",\"fullName\":\"Not nike Org\", \"inn\":\"1111\",\"kpp\":\"42233\",\"address\":\"Moscow, 11\",\"phone\":\"8779\",\"isActive\":true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/organization/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "organization",
+            "update"
+          ]
+        },
+        "description": "Update saved before organization."
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
 }

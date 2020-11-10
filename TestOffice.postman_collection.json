@@ -1,125 +1,125 @@
 {
-	"info": {
-		"_postman_id": "ae0e628d-6bff-42bc-a4e3-d8dd07cf4569",
-		"name": "Test office",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "http://localhost:8888/api/office/list",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"orgId\":\"1\",\"name\":null,\"phone\":null,\"isActive\":null}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/office/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"office",
-						"list"
-					]
-				},
-				"description": "Get list of offices."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/office/2",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8888/api/office/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"office",
-						"2"
-					]
-				},
-				"description": "Get office by id."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/office/save",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"orgId\":2,\"name\":\"Testing office\",\"address\":null,\"phone\":null,\"isActive\":true}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/office/save",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"office",
-						"save"
-					]
-				},
-				"description": "Save office."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8888/api/office/update",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"id\":5,\"name\":\"Testing office\",\"address\":\"New York, 2\",\"phone\":\"8800\",\"isActive\":true}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api/office/update",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api",
-						"office",
-						"update"
-					]
-				},
-				"description": "Update office."
-			},
-			"response": []
-		}
-	],
-	"protocolProfileBehavior": {}
+  "info": {
+    "_postman_id": "ae0e628d-6bff-42bc-a4e3-d8dd07cf4569",
+    "name": "Test office",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8888/api/office/list",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"orgId\":\"1\",\"name\":null,\"phone\":null,\"isActive\":null}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/office/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "office",
+            "list"
+          ]
+        },
+        "description": "Get list of offices."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/office/2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8888/api/office/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "office",
+            "2"
+          ]
+        },
+        "description": "Get office by id."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/office/save",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"orgId\":2,\"name\":\"Testing office\",\"address\":null,\"phone\":null,\"isActive\":true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/office/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "office",
+            "save"
+          ]
+        },
+        "description": "Save office."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8888/api/office/update",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":5,\"name\":\"Testing office\",\"address\":\"New York, 2\",\"phone\":\"8800\",\"isActive\":true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8888/api/office/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "api",
+            "office",
+            "update"
+          ]
+        },
+        "description": "Update office."
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
 }

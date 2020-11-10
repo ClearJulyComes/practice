@@ -28,7 +28,8 @@ public class OrganizationUpdateDto {
         this.kpp = kpp;
         this.address = address;
     }
-    public OrganizationUpdateDto(){
+
+    public OrganizationUpdateDto() {
 
     }
 }

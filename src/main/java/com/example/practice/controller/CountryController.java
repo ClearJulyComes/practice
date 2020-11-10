@@ -19,19 +19,21 @@ public class CountryController {
 
     /**
      * Constructor with dependency injection of {@link CountryService}
+     *
      * @param countryService injected bean
      */
     @Autowired
-    public CountryController(CountryService countryService){
+    public CountryController(CountryService countryService) {
         this.countryService = countryService;
     }
 
     /**
      * Get all countries
+     *
      * @return list of countries
      */
     @GetMapping("/api/countries")
-    public List<Country> getCountries(){
+    public List<Country> getCountries() {
         return countryService.getAll();
     }
 }

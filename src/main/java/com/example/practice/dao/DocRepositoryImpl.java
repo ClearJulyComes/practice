@@ -20,6 +20,7 @@ public class DocRepositoryImpl implements DocRepository {
 
     /**
      * Get all docs from DB
+     *
      * @return list of all doc's entities
      */
     @Override
@@ -30,6 +31,7 @@ public class DocRepositoryImpl implements DocRepository {
 
     /**
      * Find doc by code
+     *
      * @param code of doc
      * @return doc entity
      */
@@ -42,6 +44,7 @@ public class DocRepositoryImpl implements DocRepository {
 
     /**
      * Find doc by name
+     *
      * @param name of doc
      * @return doc entity
      */

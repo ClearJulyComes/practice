@@ -23,6 +23,7 @@ public class OrganizationController {
 
     /**
      * Constructor with dependency of {@link OrganizationService}
+     *
      * @param organizationService injected bean
      */
     @Autowired
@@ -32,42 +33,46 @@ public class OrganizationController {
 
     /**
      * Get list of organizations which satisfied to filter
+     *
      * @param dto filter
      * @return list of organization's dto
      */
     @PostMapping("/list")
-    public List<OrganizationListView> getOrgList(@RequestBody OrganizationListFilterDto dto){
+    public List<OrganizationListView> getOrgList(@RequestBody OrganizationListFilterDto dto) {
         return organizationService.getAllActive(dto);
     }
 
     /**
      * Get organization by id
+     *
      * @param id unique id of searching organization
      * @return organization dto
      */
     @GetMapping("/{id}")
-    public OrganizationIdView getOrg(@PathVariable int id){
+    public OrganizationIdView getOrg(@PathVariable int id) {
         return organizationService.getOrganization(id);
     }
 
     /**
      * Update organization data
+     *
      * @param dto new organization params
      * @return result status
      */
     @PostMapping("/update")
-    public String updateOrg(@RequestBody OrganizationUpdateDto dto){
+    public String updateOrg(@RequestBody OrganizationUpdateDto dto) {
         organizationService.update(dto);
         return "Ok";
     }
 
     /**
      * Save new organization
+     *
      * @param dto params of new organization
      * @return result status
      */
     @PostMapping("/save")
-    public String saveOrg(@RequestBody OrganizationSaveDto dto){
+    public String saveOrg(@RequestBody OrganizationSaveDto dto) {
         organizationService.save(dto);
         return "Saved";
     }

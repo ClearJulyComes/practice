@@ -1,6 +1,6 @@
 package com.example.practice.dao;
 
-import com.example.practice.daointerface.OfficeRepository;
+import com.example.practice.daointerface.CustomRepository;
 import com.example.practice.view.officeview.OfficeListFilterDto;
 import com.example.practice.model.Office;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,14 @@ import java.util.Optional;
  * Repository for working with office entity
  */
 @Repository
-public class OfficeRepositoryImpl implements OfficeRepository {
+public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDto, Office> {
 
     @Autowired
     private EntityManager entityManager;
 
     /**
      * Find list of offices from DB by criteria query
+     *
      * @param dto filter
      * @return optional list of offices
      */
@@ -42,13 +43,13 @@ public class OfficeRepositoryImpl implements OfficeRepository {
         Predicate predicate4
                 = criteriaBuilder.equal(root.get("isActive"), dto.getIsActive());
         Predicate finalPredicate = criteriaBuilder.and(predicate1);
-        if (dto.getName()!= null){
+        if (dto.getName() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate2);
         }
-        if (dto.getPhone()!= null){
+        if (dto.getPhone() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate3);
         }
-        if (dto.getIsActive()!= null){
+        if (dto.getIsActive() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate4);
         }
         criteriaQuery.select(root).where(finalPredicate);
@@ -57,6 +58,7 @@ public class OfficeRepositoryImpl implements OfficeRepository {
 
     /**
      * Save office entity to the DB
+     *
      * @param office entity for saving
      */
     @Override
@@ -66,6 +68,7 @@ public class OfficeRepositoryImpl implements OfficeRepository {
 
     /**
      * Find office by entity manager using find()
+     *
      * @param id id of
      * @return optional office entity
      */

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserMapperFacadeImpl implements CustomMapperFacade{
+public class UserMapperFacadeImpl implements CustomMapperFacade {
     @Autowired
     @Qualifier("userMapperFactoryBean")
     private MapperFactory mapperFactory;

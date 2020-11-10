@@ -13,7 +13,8 @@ public class OrganizationListView {
         this.name = name;
         this.isActive = isActive;
     }
-    public OrganizationListView(){
+
+    public OrganizationListView() {
 
     }
 }

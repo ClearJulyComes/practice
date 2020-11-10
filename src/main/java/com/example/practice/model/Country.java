@@ -20,7 +20,7 @@ public class Country {
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    public Country(){
+    public Country() {
 
     }
 

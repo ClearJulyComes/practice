@@ -22,6 +22,7 @@ public class UserController {
 
     /**
      * Constructor with dependency of {@link UserInfoService}
+     *
      * @param userInfoService injected bean
      */
     @Autowired
@@ -31,42 +32,46 @@ public class UserController {
 
     /**
      * Get list of users by filter
+     *
      * @param dto filter params
      * @return list of users satisfied to filter
      */
     @PostMapping("/list")
-    public List<UserListView> getUserList(@RequestBody UserListFilterDto dto){
+    public List<UserListView> getUserList(@RequestBody UserListFilterDto dto) {
         return userInfoService.findList(dto);
     }
 
     /**
      * Get user by id
+     *
      * @param id id of searching user
      * @return user dto
      */
     @GetMapping("/{id}")
-    public UserIdView getUser(@PathVariable int id){
+    public UserIdView getUser(@PathVariable int id) {
         return userInfoService.findById(id);
     }
 
     /**
      * Update user info
+     *
      * @param dto new data of user
      * @return result status
      */
     @PostMapping("/update")
-    public String updateUser(@RequestBody UserUpdateDto dto){
+    public String updateUser(@RequestBody UserUpdateDto dto) {
         userInfoService.update(dto);
         return "Ok";
     }
 
     /**
      * Save new user
+     *
      * @param dto new user info
      * @return result status
      */
     @PostMapping("/save")
-    public String saveUser(@RequestBody UserSaveDto dto){
+    public String saveUser(@RequestBody UserSaveDto dto) {
         userInfoService.save(dto);
         return "Saved";
     }

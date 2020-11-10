@@ -1,6 +1,6 @@
 package com.example.practice.dao;
 
-import com.example.practice.daointerface.OrganizationRepository;
+import com.example.practice.daointerface.CustomRepository;
 import com.example.practice.view.organizationview.OrganizationListFilterDto;
 import com.example.practice.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,13 @@ import java.util.Optional;
  * Repository for working with organization entity
  */
 @Repository
-public class OrganizationRepositoryImpl implements OrganizationRepository {
+public class OrganizationRepositoryImpl implements CustomRepository<OrganizationListFilterDto, Organization> {
     @Autowired
     private EntityManager entityManager;
 
     /**
      * Find organizations in DB by filter. Using Criteria API for creating query by filter
+     *
      * @param dto filter
      * @return optional list of organizations
      */
@@ -40,10 +41,10 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
         Predicate predicate3
                 = criteriaBuilder.equal(root.get("isActive"), dto.getIsActive());
         Predicate finalPredicate = criteriaBuilder.and(predicate1);
-        if (dto.getInn()!=null){
+        if (dto.getInn() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate2);
         }
-        if (dto.getIsActive()!=null){
+        if (dto.getIsActive() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate3);
         }
         criteriaQuery.select(root).where(finalPredicate);
@@ -53,6 +54,7 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
 
     /**
      * Save organization to DB
+     *
      * @param organization organization entity
      */
     @Override
@@ -62,6 +64,7 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
 
     /**
      * Find organization by id using named query
+     *
      * @param id organization id
      * @return optional organization entity
      */

@@ -1,12 +1,12 @@
 package com.example.practice.service;
 
-import com.example.practice.daointerface.OfficeRepository;
-import com.example.practice.daointerface.OrganizationRepository;
+import com.example.practice.daointerface.CustomRepository;
 import com.example.practice.view.officeview.*;
 import com.example.practice.model.Office;
 import com.example.practice.model.Organization;
 import com.example.practice.model.mapper.CustomMapperFacade;
 import com.example.practice.serviceinterface.OfficeService;
+import com.example.practice.view.organizationview.OrganizationListFilterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,9 @@ import java.util.NoSuchElementException;
 public class OfficeServiceImpl implements OfficeService {
 
     @Autowired
-    private OrganizationRepository organizationRepository;
+    private CustomRepository<OrganizationListFilterDto, Organization> organizationRepository;
     @Autowired
-    private OfficeRepository officeRepository;
+    private CustomRepository<OfficeListFilterDto, Office> officeRepository;
     @Autowired
     @Qualifier("officeMapperFacadeImpl")
     private CustomMapperFacade mapperFacade;
@@ -30,21 +30,21 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     public List<OfficeListView> getAllActive(OfficeListFilterDto dto) {
         List<Office> offices = officeRepository.findList(dto)
-                .orElseThrow(()-> new NoSuchElementException("No office entities"));
+                .orElseThrow(() -> new NoSuchElementException("No office entities"));
         return mapperFacade.mapAsList(offices, OfficeListView.class);
     }
 
     @Override
     public OfficeIdView getOffice(int id) {
         Office office = officeRepository.findById(id)
-                .orElseThrow(()-> new NoSuchElementException("No office entity by 'id' "+ id));
+                .orElseThrow(() -> new NoSuchElementException("No office entity by 'id' " + id));
         return mapperFacade.map(office, OfficeIdView.class);
     }
 
     @Override
     public void update(OfficeUpdateDto dto) {
         Office office = officeRepository.findById(dto.getId())
-                .orElseThrow(()-> new NoSuchElementException("No office entity by 'id' "+ dto.getId()));
+                .orElseThrow(() -> new NoSuchElementException("No office entity by 'id' " + dto.getId()));
         mapperFacade.map(dto, office);
         officeRepository.save(office);
     }
@@ -53,7 +53,7 @@ public class OfficeServiceImpl implements OfficeService {
     public void save(OfficeSaveDto dto) {
         Office office = mapperFacade.map(dto, Office.class);
         Organization organization = organizationRepository.findById(dto.getOrgId())
-                .orElseThrow(()-> new NoSuchElementException("No organization entity by 'id' "+ dto.getOrgId()));
+                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id' " + dto.getOrgId()));
         office.setOrgId(organization);
         officeRepository.save(office);
     }

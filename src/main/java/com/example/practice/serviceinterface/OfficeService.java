@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface OfficeService {
     List<OfficeListView> getAllActive(OfficeListFilterDto dto);
+
     OfficeIdView getOffice(int id);
+
     void update(OfficeUpdateDto dto);
+
     void save(OfficeSaveDto dto);
 }

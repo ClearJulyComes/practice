@@ -13,11 +13,6 @@ public class UserDoc {
     @Id
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "user_info_id")
-    private UserInfo userInfo;
-
     @Version
     @Column(name = "version")
     private Integer version;
@@ -33,7 +28,12 @@ public class UserDoc {
     @JoinColumn(name = "doc_id")
     private Doc docId;
 
-    public UserDoc(){
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JoinColumn(name = "user_info_id")
+    private UserInfo userInfo;
+
+    public UserDoc() {
 
     }
 

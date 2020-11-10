@@ -22,6 +22,7 @@ public class OfficeController {
 
     /**
      * Constructor with dependency of {@link OfficeService}
+     *
      * @param officeService injected bean
      */
     @Autowired
@@ -31,42 +32,46 @@ public class OfficeController {
 
     /**
      * Get office data by id
+     *
      * @param id unique id for office finding
      * @return office dto
      */
     @GetMapping("/{id}")
-    public OfficeIdView getOffice(@PathVariable int id){
+    public OfficeIdView getOffice(@PathVariable int id) {
         return officeService.getOffice(id);
     }
 
     /**
      * Get office data by filter
+     *
      * @param dto for filtering offices
      * @return list of offices which satisfied for filter
      */
     @PostMapping("/list")
-    public List<OfficeListView> getOfficeList(@RequestBody OfficeListFilterDto dto){
+    public List<OfficeListView> getOfficeList(@RequestBody OfficeListFilterDto dto) {
         return officeService.getAllActive(dto);
     }
 
     /**
      * Update office data
+     *
      * @param dto new data for updating
      * @return result status
      */
     @PostMapping("/update")
-    public String updateOffice(@RequestBody OfficeUpdateDto dto){
+    public String updateOffice(@RequestBody OfficeUpdateDto dto) {
         officeService.update(dto);
         return "Ok";
     }
 
     /**
      * Save office data
+     *
      * @param dto new office data for saving
      * @return result status
      */
     @PostMapping("/save")
-    public String saveOffice(@RequestBody OfficeSaveDto dto){
+    public String saveOffice(@RequestBody OfficeSaveDto dto) {
         officeService.save(dto);
         return "Saved";
     }

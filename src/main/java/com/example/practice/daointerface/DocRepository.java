@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface DocRepository {
     List<Doc> getList();
+
     Doc findByCode(int code);
+
     Doc findByName(String name);
 }

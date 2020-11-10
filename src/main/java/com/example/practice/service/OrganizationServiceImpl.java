@@ -1,6 +1,6 @@
 package com.example.practice.service;
 
-import com.example.practice.daointerface.OrganizationRepository;
+import com.example.practice.daointerface.CustomRepository;
 import com.example.practice.view.organizationview.*;
 import com.example.practice.model.Organization;
 import com.example.practice.model.mapper.CustomMapperFacade;
@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 public class OrganizationServiceImpl implements OrganizationService {
 
     @Autowired
-    private OrganizationRepository organizationRepository;
+    private CustomRepository<OrganizationListFilterDto, Organization> organizationRepository;
     @Autowired
     @Qualifier("organizationMapperFacadeImpl")
     private CustomMapperFacade mapperFacade;
@@ -26,21 +26,21 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public List<OrganizationListView> getAllActive(OrganizationListFilterDto dto) {
         List<Organization> organizations = organizationRepository.findList(dto)
-                .orElseThrow(()-> new NoSuchElementException("No organization entities"));
+                .orElseThrow(() -> new NoSuchElementException("No organization entities"));
         return mapperFacade.mapAsList(organizations, OrganizationListView.class);
     }
 
     @Override
     public OrganizationIdView getOrganization(int id) {
         Organization organization = organizationRepository.findById(id)
-                .orElseThrow(()-> new NoSuchElementException("No organization entity by 'id'  " + id));
+                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + id));
         return mapperFacade.map(organization, OrganizationIdView.class);
     }
 
     @Override
     public void update(OrganizationUpdateDto dto) {
         Organization organization = organizationRepository.findById(dto.getId())
-                .orElseThrow(()-> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
+                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
         mapperFacade.map(dto, organization);
         organizationRepository.save(organization);
     }

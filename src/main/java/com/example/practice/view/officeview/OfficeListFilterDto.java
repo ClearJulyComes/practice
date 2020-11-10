@@ -11,7 +11,7 @@ public class OfficeListFilterDto {
     private String phone;
     private Boolean isActive;
 
-    public OfficeListFilterDto(){
+    public OfficeListFilterDto() {
 
     }
 }

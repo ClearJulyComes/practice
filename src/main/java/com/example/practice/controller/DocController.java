@@ -18,6 +18,7 @@ public class DocController {
 
     /**
      * Constructor with dependency of {@link DocService}
+     *
      * @param docService injected bean
      */
     @Autowired
@@ -27,10 +28,11 @@ public class DocController {
 
     /**
      * Get all docs from DB
+     *
      * @return list of docs
      */
     @GetMapping("api/docs")
-    public List<Doc> getDocs(){
+    public List<Doc> getDocs() {
         return docService.getAll();
     }
 }

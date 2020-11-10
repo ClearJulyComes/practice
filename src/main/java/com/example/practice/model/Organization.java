@@ -40,7 +40,7 @@ public class Organization {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    public Organization(){
+    public Organization() {
 
     }
 

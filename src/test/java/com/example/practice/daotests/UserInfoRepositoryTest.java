@@ -29,7 +29,7 @@ public class UserInfoRepositoryTest {
     private DocRepository docRepository;
 
     @Test
-    public void whenUpdate_returnSuccess(){
+    public void whenUpdate_returnSuccess() {
         Doc expected = new Doc(7, "Военный билет");
         expected.setId(2);
         Doc actual = docRepository.findByName("Военный билет");

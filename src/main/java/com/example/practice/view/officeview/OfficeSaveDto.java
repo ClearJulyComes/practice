@@ -12,6 +12,7 @@ public class OfficeSaveDto {
     private String address;
     private Boolean isActive = true;
 
-    public OfficeSaveDto(){}
+    public OfficeSaveDto() {
+    }
 
 }

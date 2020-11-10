@@ -1,6 +1,6 @@
 package com.example.practice.daotests;
 
-import com.example.practice.daointerface.OrganizationRepository;
+import com.example.practice.daointerface.CustomRepository;
 import com.example.practice.dao.OrganizationRepositoryImpl;
 import com.example.practice.view.organizationview.OrganizationListFilterDto;
 import com.example.practice.model.Organization;
@@ -25,23 +25,23 @@ public class OrganizationRepositoryTests {
     static class OrganizationServiceContextConfiguration {
 
         @Bean
-        public OrganizationRepository organizationRepository() {
+        public CustomRepository<OrganizationListFilterDto, Organization> organizationRepository() {
             return new OrganizationRepositoryImpl();
         }
     }
 
     @Autowired
-    private OrganizationRepository organizationRepository;
+    private CustomRepository<OrganizationListFilterDto, Organization> organizationRepository;
 
     @Test
-    public void whenFindList_thenReturnOrganizations(){
+    public void whenFindList_thenReturnOrganizations() {
         List<Organization> organizations = new ArrayList<>();
-        Organization organization1 = new Organization( 1, 0, "Cola", "Coca-Cola",
-                "34284438932", "1111333432", "Moscow, 22" );
+        Organization organization1 = new Organization(1, 0, "Cola", "Coca-Cola",
+                "34284438932", "1111333432", "Moscow, 22");
         organization1.setIsActive(true);
         organization1.setPhone("89988");
-        Organization organization2 = new Organization( 2, 0, "Cola", "Coca-Cola",
-                "34284438932", "1111333432", "Moscow, 22" );
+        Organization organization2 = new Organization(2, 0, "Cola", "Coca-Cola",
+                "34284438932", "1111333432", "Moscow, 22");
         organization2.setIsActive(false);
         organizations.add(organization1);
         organizations.add(organization2);

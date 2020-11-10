@@ -14,7 +14,7 @@ public class OrganizationListFilterDto {
         this.name = name;
     }
 
-    public OrganizationListFilterDto(){
+    public OrganizationListFilterDto() {
 
     }
 }

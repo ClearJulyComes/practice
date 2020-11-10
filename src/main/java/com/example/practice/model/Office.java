@@ -45,7 +45,7 @@ public class Office {
     @JoinColumn(name = "org_id")
     private Organization orgId;
 
-    public Office(){
+    public Office() {
 
     }
 

@@ -1,6 +1,6 @@
 package com.example.practice.dao;
 
-import com.example.practice.daointerface.UserInfoRepository;
+import com.example.practice.daointerface.CustomRepository;
 import com.example.practice.view.userview.UserListFilterDto;
 import com.example.practice.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,14 @@ import java.util.Optional;
  * Repository for UserInfo's entity DB management
  */
 @Repository
-public class UserInfoRepositoryImpl implements UserInfoRepository {
+public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDto, UserInfo> {
 
     @Autowired
     private EntityManager entityManager;
 
     /**
      * Find list of UserInfo by filter using Criteria API
+     *
      * @param dto filter
      * @return optional list of UserInfo
      */
@@ -49,22 +50,22 @@ public class UserInfoRepositoryImpl implements UserInfoRepository {
         Predicate predicate7
                 = criteriaBuilder.equal(root.get("countryId").get("code"), dto.getCitizenshipCode());
         Predicate finalPredicate = criteriaBuilder.and(predicate1);
-        if (dto.getFirstName()!= null){
+        if (dto.getFirstName() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate2);
         }
-        if (dto.getSecondName()!= null){
+        if (dto.getSecondName() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate3);
         }
-        if (dto.getMiddleName()!= null){
+        if (dto.getMiddleName() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate4);
         }
-        if (dto.getPosition()!= null){
+        if (dto.getPosition() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate5);
         }
-        if (dto.getDocCode()!= null){
+        if (dto.getDocCode() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate6);
         }
-        if (dto.getCitizenshipCode()!= null){
+        if (dto.getCitizenshipCode() != null) {
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate7);
         }
         criteriaQuery.select(root).where(finalPredicate);
@@ -73,6 +74,7 @@ public class UserInfoRepositoryImpl implements UserInfoRepository {
 
     /**
      * Save UserInfo entity
+     *
      * @param dto new user's entity
      */
     @Override
@@ -82,6 +84,7 @@ public class UserInfoRepositoryImpl implements UserInfoRepository {
 
     /**
      * Find user by id using named query
+     *
      * @param id user id
      * @return optional user entity
      */

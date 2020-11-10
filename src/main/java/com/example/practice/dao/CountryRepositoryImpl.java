@@ -19,6 +19,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     /**
      * Constructor with dependency of {@link EntityManager}
+     *
      * @param entityManager injected bean
      */
     @Autowired
@@ -28,6 +29,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     /**
      * Get all countries
+     *
      * @return list of countries
      */
     @Override
@@ -38,6 +40,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     /**
      * Find country by code
+     *
      * @param code individual code of country
      * @return country
      */

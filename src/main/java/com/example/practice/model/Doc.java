@@ -20,7 +20,7 @@ public class Doc {
     @Column(name = "name", length = 60, nullable = false, unique = true)
     private String name;
 
-    public Doc(){
+    public Doc() {
 
     }
 
