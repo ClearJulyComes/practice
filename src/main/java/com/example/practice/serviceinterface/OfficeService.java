@@ -1,12 +1,12 @@
 package com.example.practice.serviceinterface;
 
-import com.example.practice.model.Office;
+import com.example.practice.view.officeview.*;
 
 import java.util.List;
 
 public interface OfficeService {
-    List<Office> getAllActive();
-    Office getOffice(int id);
-    void update(Office office);
-    void save(Office office);
+    List<OfficeListView> getAllActive(OfficeListFilterDto dto);
+    OfficeIdView getOffice(int id);
+    void update(OfficeUpdateDto dto);
+    void save(OfficeSaveDto dto);
 }

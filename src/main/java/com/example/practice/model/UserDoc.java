@@ -9,10 +9,14 @@ import java.util.Date;
 @Entity
 @Table(name = "User_Doc")
 public class UserDoc {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    private Integer id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JoinColumn(name = "user_info_id")
+    private UserInfo userInfo;
 
     @Version
     @Column(name = "version")
@@ -25,7 +29,7 @@ public class UserDoc {
     @Temporal(TemporalType.DATE)
     private Date docDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_id")
     private Doc docId;
 
@@ -33,10 +37,10 @@ public class UserDoc {
 
     }
 
-    public UserDoc(int id, String docNumber, Date docDate, Doc docId) {
-        this.id = id;
+    public UserDoc(String docNumber, Date docDate, Doc docId) {
         this.docNumber = docNumber;
         this.docDate = docDate;
         this.docId = docId;
     }
+
 }

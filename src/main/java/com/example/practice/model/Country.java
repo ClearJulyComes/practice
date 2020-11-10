@@ -20,9 +20,6 @@ public class Country {
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    //@OneToMany(mappedBy = "citizenshipCode", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //private Collection<UserInfo> userInfos;
-
     public Country(){
 
     }

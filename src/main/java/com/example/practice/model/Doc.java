@@ -20,9 +20,6 @@ public class Doc {
     @Column(name = "name", length = 60, nullable = false, unique = true)
     private String name;
 
-    //@OneToMany(mappedBy = "docCode", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //private Collection<UserDoc> userDocs;
-
     public Doc(){
 
     }

@@ -51,11 +51,11 @@ CREATE TABLE IF NOT EXISTS Doc (
 COMMENT ON TABLE Doc IS 'Документ';
 
 CREATE TABLE IF NOT EXISTS User_Doc (
-    user_id     INTEGER                     COMMENT 'Уникальный идентификатор'      PRIMARY KEY,
-    version     INTEGER     NOT NULL        COMMENT 'Служебное поле hibernate',
-    doc_id      INTEGER     NOT NULL        COMMENT 'Идентификатор документа',
-    doc_number  VARCHAR(30) NOT NULL        COMMENT 'Номер документа',
-    doc_date    DATE        NOT NULL        COMMENT 'Дата выдачи документа',
+    user_info_id    INTEGER                     COMMENT 'Уникальный идентификатор'      PRIMARY KEY,
+    version         INTEGER     NOT NULL        COMMENT 'Служебное поле hibernate',
+    doc_id          INTEGER     NOT NULL        COMMENT 'Идентификатор документа',
+    doc_number      VARCHAR(30) NOT NULL        COMMENT 'Номер документа',
+    doc_date        DATE        NOT NULL        COMMENT 'Дата выдачи документа',
     CONSTRAINT UserUC UNIQUE (doc_id, doc_number)
 );
 COMMENT ON TABLE User_Doc IS 'Документ пользователя';
@@ -67,7 +67,7 @@ CREATE INDEX IX_User_Info_Office_Id ON User_Info (office_id);
 CREATE INDEX IX_User_Info_Citizenship_Code ON User_Info (country_id);
 ALTER TABLE User_Info ADD FOREIGN KEY (office_id) REFERENCES Office (id);
 ALTER TABLE User_Info ADD FOREIGN KEY (country_id) REFERENCES Country (id);
-ALTER TABLE User_Doc ADD FOREIGN KEY (user_id) REFERENCES User_Info (id);
+ALTER TABLE User_Doc ADD FOREIGN KEY (user_info_id) REFERENCES User_Info (id);
 
 CREATE INDEX IX_User_Doc_Doc_Name ON User_Doc (doc_id);
 ALTER TABLE User_Doc ADD FOREIGN KEY (doc_id) REFERENCES Doc (id) ;

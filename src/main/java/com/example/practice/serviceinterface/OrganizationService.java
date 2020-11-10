@@ -1,12 +1,12 @@
 package com.example.practice.serviceinterface;
 
-import com.example.practice.model.Organization;
+import com.example.practice.view.organizationview.*;
 
 import java.util.List;
 
 public interface OrganizationService {
-    List<Organization> getAllActive();
-    Organization getOrganization(int id);
-    void update(Organization organization);
-    void save(Organization organization);
+    List<OrganizationListView> getAllActive(OrganizationListFilterDto dto);
+    OrganizationIdView getOrganization(int id);
+    void update(OrganizationUpdateDto organization);
+    void save(OrganizationSaveDto organization);
 }

@@ -2,22 +2,12 @@ package com.example.practice.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "User_Info")
+@NamedQuery(name = "findUserById", query = "SELECT u FROM UserInfo u WHERE u.id= :id")
 public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,17 +36,17 @@ public class UserInfo {
     @Column(name = "is_identified")
     private Boolean isIdentified;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id")
     private Office officeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country countryId;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserDoc userDocId;
+    @OneToOne(mappedBy = "userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private UserDoc userDoc;
 
     public UserInfo(){
 
