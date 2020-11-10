@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "9d250d6d-c0c0-419d-be4c-9e65de3f7d7d",
+		"name": "Test user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8888/api/user/list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"officeId\":\"1\",\"firstName\":null,\"lastName\":null,\"middleName\":null,\"position\":null,\"docCode\":3,\"citizenshipCode\":null}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"user",
+						"list"
+					]
+				},
+				"description": "Get list of users."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8888/api/user/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/api/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				},
+				"description": "Get user by id."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8888/api/user/save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"officeId\":\"3\",\"firstName\":\"Dmitriy\",\"secondName\":null,\"middleName\":null,\"position\":\"Courier\",\"phone\":null,\"docCode\":7,\"docName\":\"Военный билет\",\"docNumber\":1234,\"docDate\":\"2020-08-02\",\"citizenshipCode\":643,\"isIdentified\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/user/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"user",
+						"save"
+					]
+				},
+				"description": "Save new user."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8888/api/user/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":3,\"officeId\":\"2\",\"firstName\":\"Dmitriy\",\"secondName\":null,\"middleName\":null,\"position\":\"HR\",\"phone\":null,\"docName\":\"Временное удостоверение, выданное взамен военного билета\",\"docNumber\":1234,\"docDate\":\"2020-01-02\",\"citizenshipCode\":643,\"isIdentified\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/user/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"user",
+						"update"
+					]
+				},
+				"description": "Update user info."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
