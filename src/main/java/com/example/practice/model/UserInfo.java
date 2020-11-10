@@ -45,7 +45,6 @@ public class UserInfo {
     private Country countryId;
 
     @OneToOne(mappedBy = "userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
     private UserDoc userDoc;
 
     public UserInfo(){
