@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class CountryServiceImpl implements CountryService {
+    private final CountryRepository countryRepository;
+
     @Autowired
-    private CountryRepository countryRepository;
+    public CountryServiceImpl(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+    }
 
     @Override
     public List<Country> getAll() {

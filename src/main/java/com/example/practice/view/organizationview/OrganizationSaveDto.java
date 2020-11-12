@@ -1,9 +1,11 @@
 package com.example.practice.view.organizationview;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
+@NoArgsConstructor
 public class OrganizationSaveDto {
     @NonNull
     private String name;

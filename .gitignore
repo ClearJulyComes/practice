@@ -9,3 +9,7 @@ target/
 *.iml
 *.ipr
 *.log
+mvnw
+mvnw.cmd
+.mvn
+practiceProject.iml

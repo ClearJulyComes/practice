@@ -59,9 +59,9 @@ public class UserController {
      * @return result status
      */
     @PostMapping("/update")
-    public String updateUser(@RequestBody UserUpdateDto dto) {
+    public ResultView updateUser(@RequestBody UserUpdateDto dto) {
         userInfoService.update(dto);
-        return "Ok";
+        return new ResultView("Success");
     }
 
     /**
@@ -71,8 +71,8 @@ public class UserController {
      * @return result status
      */
     @PostMapping("/save")
-    public String saveUser(@RequestBody UserSaveDto dto) {
+    public ResultView saveUser(@RequestBody UserSaveDto dto) {
         userInfoService.save(dto);
-        return "Saved";
+        return new ResultView("Success");
     }
 }

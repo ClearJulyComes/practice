@@ -28,4 +28,7 @@ public class OrganizationIdView {
         this.kpp = kpp;
         this.address = address;
     }
+
+    public OrganizationIdView() {
+    }
 }

@@ -3,10 +3,10 @@ package com.example.practice.daointerface;
 import java.util.List;
 import java.util.Optional;
 
-public interface CustomRepository<T, D> {
-    Optional<List<D>> findList(T dto);
+public interface CustomRepository<F, E> {
+    List<E> findList(F filter);
 
-    void save(D office);
+    void save(E entity);
 
-    Optional<D> findById(int id);
+    Optional<E> findById(int id);
 }

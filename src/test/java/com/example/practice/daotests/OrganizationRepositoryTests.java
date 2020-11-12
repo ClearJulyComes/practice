@@ -13,9 +13,9 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -25,8 +25,9 @@ public class OrganizationRepositoryTests {
     static class OrganizationServiceContextConfiguration {
 
         @Bean
-        public CustomRepository<OrganizationListFilterDto, Organization> organizationRepository() {
-            return new OrganizationRepositoryImpl();
+        public CustomRepository<OrganizationListFilterDto, Organization> organizationRepository(
+                EntityManager entityManager) {
+            return new OrganizationRepositoryImpl(entityManager);
         }
     }
 
@@ -35,7 +36,7 @@ public class OrganizationRepositoryTests {
 
     @Test
     public void whenFindList_thenReturnOrganizations() {
-        List<Organization> organizations = new ArrayList<>();
+        List<Organization> expected = new ArrayList<>();
         Organization organization1 = new Organization(1, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22");
         organization1.setIsActive(true);
@@ -43,11 +44,10 @@ public class OrganizationRepositoryTests {
         Organization organization2 = new Organization(2, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22");
         organization2.setIsActive(false);
-        organizations.add(organization1);
-        organizations.add(organization2);
-        Optional<List<Organization>> expected = Optional.of(organizations);
+        expected.add(organization1);
+        expected.add(organization2);
         OrganizationListFilterDto dto = new OrganizationListFilterDto("Cola");
-        Optional<List<Organization>> actual = organizationRepository.findList(dto);
+        List<Organization> actual = organizationRepository.findList(dto);
 
         Assert.assertEquals(expected, actual);
     }

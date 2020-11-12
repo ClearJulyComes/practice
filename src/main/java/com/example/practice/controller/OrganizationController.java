@@ -2,6 +2,7 @@ package com.example.practice.controller;
 
 import com.example.practice.view.organizationview.*;
 import com.example.practice.serviceinterface.OrganizationService;
+import com.example.practice.view.userview.ResultView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,9 +61,9 @@ public class OrganizationController {
      * @return result status
      */
     @PostMapping("/update")
-    public String updateOrg(@RequestBody OrganizationUpdateDto dto) {
+    public ResultView updateOrg(@RequestBody OrganizationUpdateDto dto) {
         organizationService.update(dto);
-        return "Ok";
+        return new ResultView("Success");
     }
 
     /**
@@ -72,8 +73,8 @@ public class OrganizationController {
      * @return result status
      */
     @PostMapping("/save")
-    public String saveOrg(@RequestBody OrganizationSaveDto dto) {
+    public ResultView saveOrg(@RequestBody OrganizationSaveDto dto) {
         organizationService.save(dto);
-        return "Saved";
+        return new ResultView("Success");
     }
 }

@@ -20,8 +20,12 @@ import java.util.Optional;
  */
 @Repository
 public class OrganizationRepositoryImpl implements CustomRepository<OrganizationListFilterDto, Organization> {
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public OrganizationRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     /**
      * Find organizations in DB by filter. Using Criteria API for creating query by filter
@@ -30,7 +34,7 @@ public class OrganizationRepositoryImpl implements CustomRepository<Organization
      * @return optional list of organizations
      */
     @Override
-    public Optional<List<Organization>> findList(OrganizationListFilterDto dto) {
+    public List<Organization> findList(OrganizationListFilterDto dto) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
         Root<Organization> root = criteriaQuery.from(Organization.class);
@@ -49,7 +53,7 @@ public class OrganizationRepositoryImpl implements CustomRepository<Organization
         }
         criteriaQuery.select(root).where(finalPredicate);
 
-        return Optional.of(entityManager.createQuery(criteriaQuery).getResultList());
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     /**
@@ -72,6 +76,6 @@ public class OrganizationRepositoryImpl implements CustomRepository<Organization
     public Optional<Organization> findById(int id) {
         TypedQuery<Organization> query = entityManager.createNamedQuery("findById", Organization.class);
         query.setParameter("id", id);
-        return Optional.of(query.getSingleResult());
+        return Optional.ofNullable(query.getSingleResult());
     }
 }

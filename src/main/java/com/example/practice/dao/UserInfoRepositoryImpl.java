@@ -21,8 +21,12 @@ import java.util.Optional;
 @Repository
 public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDto, UserInfo> {
 
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public UserInfoRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     /**
      * Find list of UserInfo by filter using Criteria API
@@ -31,7 +35,7 @@ public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDt
      * @return optional list of UserInfo
      */
     @Override
-    public Optional<List<UserInfo>> findList(UserListFilterDto dto) {
+    public List<UserInfo> findList(UserListFilterDto dto) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<UserInfo> criteriaQuery = criteriaBuilder.createQuery(UserInfo.class);
         Root<UserInfo> root = criteriaQuery.from(UserInfo.class);
@@ -69,7 +73,7 @@ public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDt
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate7);
         }
         criteriaQuery.select(root).where(finalPredicate);
-        return Optional.of(entityManager.createQuery(criteriaQuery).getResultList());
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     /**
@@ -92,6 +96,6 @@ public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDt
     public Optional<UserInfo> findById(int id) {
         TypedQuery<UserInfo> query = entityManager.createNamedQuery("findUserById", UserInfo.class);
         query.setParameter("id", id);
-        return Optional.of(query.getSingleResult());
+        return Optional.ofNullable(query.getSingleResult());
     }
 }

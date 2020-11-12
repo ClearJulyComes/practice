@@ -15,8 +15,12 @@ import java.util.List;
 @Repository
 public class DocRepositoryImpl implements DocRepository {
 
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public DocRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     /**
      * Get all docs from DB

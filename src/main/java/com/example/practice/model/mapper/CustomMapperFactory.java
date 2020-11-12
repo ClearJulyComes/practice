@@ -1,30 +1,64 @@
 package com.example.practice.model.mapper;
 
+import com.example.practice.model.Office;
+import com.example.practice.model.Organization;
+import com.example.practice.model.UserInfo;
+import com.example.practice.view.officeview.OfficeIdView;
+import com.example.practice.view.officeview.OfficeListView;
+import com.example.practice.view.officeview.OfficeSaveDto;
+import com.example.practice.view.officeview.OfficeUpdateDto;
+import com.example.practice.view.organizationview.OrganizationIdView;
+import com.example.practice.view.organizationview.OrganizationListView;
+import com.example.practice.view.organizationview.OrganizationSaveDto;
+import com.example.practice.view.organizationview.OrganizationUpdateDto;
+import com.example.practice.view.userview.UserIdView;
+import com.example.practice.view.userview.UserListView;
+import com.example.practice.view.userview.UserSaveDto;
+import com.example.practice.view.userview.UserUpdateDto;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
-public class CustomMapperFactory {
-
+public class CustomMapperFactory  {
     @Bean
-    @Scope(BeanDefinition.SCOPE_SINGLETON)
-    protected MapperFactory officeMapperFactoryBean() {
-        return new DefaultMapperFactory.Builder().build();
-    }
-
-    @Bean
-    @Scope(BeanDefinition.SCOPE_SINGLETON)
-    protected MapperFactory organizationMapperFactoryBean() {
-        return new DefaultMapperFactory.Builder().build();
-    }
-
-    @Bean
-    @Scope(BeanDefinition.SCOPE_SINGLETON)
-    protected MapperFactory userMapperFactoryBean() {
-        return new DefaultMapperFactory.Builder().build();
+    @Scope(scopeName = "singleton")
+    public MapperFactory mapperFactory(){
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder()
+                .constructorResolverStrategy(null)
+                .build();
+        mapperFactory.classMap(UserInfo.class, UserIdView.class)
+                .exclude("version")
+                .field("userDoc.docId.name", "docName")
+                .field("userDoc.docNumber", "docNumber")
+                .field("userDoc.docDate", "docDate")
+                .field("countryId.name", "citizenshipName")
+                .field("countryId.code", "citizenshipCode")
+                .byDefault().register();
+        mapperFactory.classMap(UserInfo.class, UserListView.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(UserSaveDto.class, UserInfo.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(UserUpdateDto.class, UserInfo.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(OrganizationIdView.class, Organization.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(Organization.class, OrganizationListView.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(OrganizationSaveDto.class, Organization.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(OrganizationUpdateDto.class, Organization.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(Office.class, OfficeIdView.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(Office.class, OfficeListView.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(OfficeSaveDto.class, Office.class)
+                .exclude("version").byDefault().register();
+        mapperFactory.classMap(OfficeUpdateDto.class, Office.class)
+                .exclude("version").byDefault().register();
+        return mapperFactory;
     }
 }

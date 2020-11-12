@@ -17,4 +17,7 @@ public class UserListView {
         this.middleName = middleName;
         this.firstName = position;
     }
+
+    public UserListView() {
+    }
 }

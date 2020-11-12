@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class DocServiceImpl implements DocService {
+    private final DocRepository docRepository;
+
     @Autowired
-    private DocRepository docRepository;
+    public DocServiceImpl(DocRepository docRepository) {
+        this.docRepository = docRepository;
+    }
 
     @Override
     public List<Doc> getAll() {

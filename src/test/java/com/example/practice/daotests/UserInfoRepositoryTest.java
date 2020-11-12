@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.TestContext;
+import org.springframework.test.context.TestContextManager;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.persistence.EntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -20,8 +24,8 @@ public class UserInfoRepositoryTest {
     static class UserInfoRepositoryContextConfiguration {
 
         @Bean
-        public DocRepository docRepository() {
-            return new DocRepositoryImpl();
+        public DocRepository docRepository(EntityManager entityManager) {
+            return new DocRepositoryImpl(entityManager);
         }
     }
 

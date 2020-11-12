@@ -20,8 +20,12 @@ import java.util.Optional;
 @Repository
 public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDto, Office> {
 
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public OfficeRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     /**
      * Find list of offices from DB by criteria query
@@ -30,7 +34,7 @@ public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDt
      * @return optional list of offices
      */
     @Override
-    public Optional<List<Office>> findList(OfficeListFilterDto dto) {
+    public List<Office> findList(OfficeListFilterDto dto) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Office> criteriaQuery = criteriaBuilder.createQuery(Office.class);
         Root<Office> root = criteriaQuery.from(Office.class);
@@ -53,7 +57,7 @@ public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDt
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate4);
         }
         criteriaQuery.select(root).where(finalPredicate);
-        return Optional.of(entityManager.createQuery(criteriaQuery).getResultList());
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     /**
@@ -74,6 +78,6 @@ public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDt
      */
     @Override
     public Optional<Office> findById(int id) {
-        return Optional.of(entityManager.find(Office.class, id));
+        return Optional.ofNullable(entityManager.find(Office.class, id));
     }
 }

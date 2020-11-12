@@ -14,4 +14,6 @@ public class OfficeListView {
         this.isActive = isActive;
     }
 
+    public OfficeListView() {
+    }
 }

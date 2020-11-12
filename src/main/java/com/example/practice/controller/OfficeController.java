@@ -2,6 +2,7 @@ package com.example.practice.controller;
 
 import com.example.practice.view.officeview.*;
 import com.example.practice.serviceinterface.OfficeService;
+import com.example.practice.view.userview.ResultView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,9 +60,9 @@ public class OfficeController {
      * @return result status
      */
     @PostMapping("/update")
-    public String updateOffice(@RequestBody OfficeUpdateDto dto) {
+    public ResultView updateOffice(@RequestBody OfficeUpdateDto dto) {
         officeService.update(dto);
-        return "Ok";
+        return new ResultView("Success");
     }
 
     /**
@@ -71,8 +72,8 @@ public class OfficeController {
      * @return result status
      */
     @PostMapping("/save")
-    public String saveOffice(@RequestBody OfficeSaveDto dto) {
+    public ResultView saveOffice(@RequestBody OfficeSaveDto dto) {
         officeService.save(dto);
-        return "Saved";
+        return new ResultView("Success");
     }
 }

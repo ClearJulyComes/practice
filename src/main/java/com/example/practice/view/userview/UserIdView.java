@@ -30,4 +30,7 @@ public class UserIdView {
         this.docNumber = docNumber;
         this.docDate = docDate;
     }
+
+    public UserIdView() {
+    }
 }

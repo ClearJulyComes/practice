@@ -2,7 +2,7 @@ package com.example.practice.model.mapper;
 
 import java.util.List;
 
-public interface CustomMapperFacade {
+public interface MapperFacade {
 
     <S, D> D map(S sourceObject, Class<D> destinationClass);
 

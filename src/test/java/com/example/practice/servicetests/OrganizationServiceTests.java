@@ -1,14 +1,16 @@
 package com.example.practice.servicetests;
 
 import com.example.practice.daointerface.CustomRepository;
+import com.example.practice.model.mapper.MapperFacade;
+import com.example.practice.model.mapper.CustomMapperFacadeImpl;
 import com.example.practice.view.organizationview.OrganizationIdView;
 import com.example.practice.view.organizationview.OrganizationListFilterDto;
 import com.example.practice.view.organizationview.OrganizationListView;
 import com.example.practice.model.Organization;
 import com.example.practice.model.mapper.CustomMapperFactory;
-import com.example.practice.model.mapper.OrganizationMapperFacadeImpl;
 import com.example.practice.service.OrganizationServiceImpl;
 import com.example.practice.serviceinterface.OrganizationService;
+import ma.glasnost.orika.MapperFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,15 +27,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {CustomMapperFactory.class, OrganizationMapperFacadeImpl.class,
+@ContextConfiguration(classes = {CustomMapperFactory.class, CustomMapperFacadeImpl.class,
         OrganizationServiceImpl.class})
 public class OrganizationServiceTests {
     @TestConfiguration
     static class OrganizationServiceContextConfiguration {
 
         @Bean
-        public OrganizationService organizationService() {
-            return new OrganizationServiceImpl();
+        public MapperFacade mapperFacade(MapperFactory mapperFactory){
+            return new CustomMapperFacadeImpl(mapperFactory);
+        }
+
+        @Bean
+        public OrganizationService organizationService(CustomRepository<OrganizationListFilterDto, Organization> organizationRepository,
+                                                       MapperFacade mapperFacade) {
+            return new OrganizationServiceImpl(organizationRepository, mapperFacade);
         }
     }
 
@@ -59,9 +67,10 @@ public class OrganizationServiceTests {
                 "34284438911", "1111333432", "Moscow, 22");
         organization2.setIsActive(true);
         organizations.add(organization2);
-        Mockito.when(organizationRepository.findList(Mockito.any())).thenReturn(Optional.of(organizations));
+        OrganizationListFilterDto filterDto = new OrganizationListFilterDto("Test");
+        Mockito.when(organizationRepository.findList(filterDto)).thenReturn(organizations);
 
-        Assert.assertEquals(expected, organizationService.getAllActive(new OrganizationListFilterDto("Cola")));
+        Assert.assertEquals(expected, organizationService.getAllActive(new OrganizationListFilterDto("Test")));
     }
 
     @Test

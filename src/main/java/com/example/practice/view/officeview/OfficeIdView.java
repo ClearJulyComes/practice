@@ -17,4 +17,7 @@ public class OfficeIdView {
         this.address = address;
         this.isActive = isActive;
     }
+
+    public OfficeIdView() {
+    }
 }
