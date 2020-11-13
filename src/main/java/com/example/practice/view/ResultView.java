@@ -1,4 +1,4 @@
-package com.example.practice.view.userview;
+package com.example.practice.view;
 
 import lombok.Data;
 

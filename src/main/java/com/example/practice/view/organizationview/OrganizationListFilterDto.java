@@ -1,16 +1,17 @@
 package com.example.practice.view.organizationview;
 
 import lombok.Data;
-import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class OrganizationListFilterDto {
-    @NonNull
+    @NotNull
     private String name;
     private String inn;
     private Boolean isActive;
 
-    public OrganizationListFilterDto(@NonNull String name) {
+    public OrganizationListFilterDto(String name) {
         this.name = name;
     }
 

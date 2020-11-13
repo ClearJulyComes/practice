@@ -11,10 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
-import java.util.Collection;
 
 @Data
 @Entity
@@ -43,14 +40,14 @@ public class Office {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id")
-    private Organization orgId;
+    private Organization organization;
 
     public Office() {
 
     }
 
-    public Office(int id, Organization orgId) {
+    public Office(int id, Organization organizations) {
         this.id = id;
-        this.orgId = orgId;
+        this.organization = organizations;
     }
 }

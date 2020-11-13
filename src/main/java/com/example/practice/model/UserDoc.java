@@ -26,7 +26,7 @@ public class UserDoc {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_id")
-    private Doc docId;
+    private Doc doc;
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
@@ -37,10 +37,10 @@ public class UserDoc {
 
     }
 
-    public UserDoc(String docNumber, Date docDate, Doc docId) {
+    public UserDoc(String docNumber, Date docDate, Doc doc) {
         this.docNumber = docNumber;
         this.docDate = docDate;
-        this.docId = docId;
+        this.doc = doc;
     }
 
 }

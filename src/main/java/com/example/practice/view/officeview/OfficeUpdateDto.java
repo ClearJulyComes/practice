@@ -2,16 +2,17 @@ package com.example.practice.view.officeview;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 public class OfficeUpdateDto {
-    @NonNull
+    @NotNull
     private int id;
-    @NonNull
+    @NotNull
     private String name;
-    @NonNull
+    @NotNull
     private String address;
     private String phone;
     private Boolean isActive;

@@ -1,8 +1,9 @@
 package com.example.practice.view.userview;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor

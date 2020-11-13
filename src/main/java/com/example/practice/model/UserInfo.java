@@ -38,11 +38,11 @@ public class UserInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id")
-    private Office officeId;
+    private Office office;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
-    private Country countryId;
+    private Country country;
 
     @OneToOne(mappedBy = "userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "user_info_id")
@@ -52,9 +52,9 @@ public class UserInfo {
 
     }
 
-    public UserInfo(int id, String firstName, Office officeId) {
+    public UserInfo(int id, String firstName, Office office) {
         this.id = id;
         this.firstName = firstName;
-        this.officeId = officeId;
+        this.office = office;
     }
 }

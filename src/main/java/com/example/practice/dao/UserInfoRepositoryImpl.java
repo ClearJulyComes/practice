@@ -40,36 +40,36 @@ public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDt
         CriteriaQuery<UserInfo> criteriaQuery = criteriaBuilder.createQuery(UserInfo.class);
         Root<UserInfo> root = criteriaQuery.from(UserInfo.class);
         Predicate predicate1
-                = criteriaBuilder.equal(root.get("officeId").get("id"), dto.getOfficeId());
-        Predicate predicate2
-                = criteriaBuilder.equal(root.get("firstName"), dto.getFirstName());
-        Predicate predicate3
-                = criteriaBuilder.equal(root.get("secondName"), dto.getSecondName());
-        Predicate predicate4
-                = criteriaBuilder.equal(root.get("middleName"), dto.getMiddleName());
-        Predicate predicate5
-                = criteriaBuilder.equal(root.get("position"), dto.getPosition());
-        Predicate predicate6
-                = criteriaBuilder.equal(root.get("userDoc").get("docId").get("code"), dto.getDocCode());
-        Predicate predicate7
-                = criteriaBuilder.equal(root.get("countryId").get("code"), dto.getCitizenshipCode());
+                = criteriaBuilder.equal(root.get("office").get("id"), dto.getOfficeId());
         Predicate finalPredicate = criteriaBuilder.and(predicate1);
         if (dto.getFirstName() != null) {
+            Predicate predicate2
+                    = criteriaBuilder.equal(root.get("firstName"), dto.getFirstName());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate2);
         }
         if (dto.getSecondName() != null) {
+            Predicate predicate3
+                    = criteriaBuilder.equal(root.get("secondName"), dto.getSecondName());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate3);
         }
         if (dto.getMiddleName() != null) {
+            Predicate predicate4
+                    = criteriaBuilder.equal(root.get("middleName"), dto.getMiddleName());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate4);
         }
         if (dto.getPosition() != null) {
+            Predicate predicate5
+                    = criteriaBuilder.equal(root.get("position"), dto.getPosition());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate5);
         }
         if (dto.getDocCode() != null) {
+            Predicate predicate6
+                    = criteriaBuilder.equal(root.get("userDoc").get("doc").get("code"), dto.getDocCode());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate6);
         }
         if (dto.getCitizenshipCode() != null) {
+            Predicate predicate7
+                    = criteriaBuilder.equal(root.get("country").get("code"), dto.getCitizenshipCode());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate7);
         }
         criteriaQuery.select(root).where(finalPredicate);

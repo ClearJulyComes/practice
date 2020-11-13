@@ -31,11 +31,11 @@ public class CustomMapperFactory  {
                 .build();
         mapperFactory.classMap(UserInfo.class, UserIdView.class)
                 .exclude("version")
-                .field("userDoc.docId.name", "docName")
+                .field("userDoc.doc.name", "docName")
                 .field("userDoc.docNumber", "docNumber")
                 .field("userDoc.docDate", "docDate")
-                .field("countryId.name", "citizenshipName")
-                .field("countryId.code", "citizenshipCode")
+                .field("country.name", "citizenshipName")
+                .field("country.code", "citizenshipCode")
                 .byDefault().register();
         mapperFactory.classMap(UserInfo.class, UserListView.class)
                 .exclude("version").byDefault().register();

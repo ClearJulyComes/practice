@@ -40,15 +40,15 @@ public class OrganizationRepositoryImpl implements CustomRepository<Organization
         Root<Organization> root = criteriaQuery.from(Organization.class);
         Predicate predicate1
                 = criteriaBuilder.equal(root.get("name"), dto.getName());
-        Predicate predicate2
-                = criteriaBuilder.equal(root.get("inn"), dto.getInn());
-        Predicate predicate3
-                = criteriaBuilder.equal(root.get("isActive"), dto.getIsActive());
         Predicate finalPredicate = criteriaBuilder.and(predicate1);
         if (dto.getInn() != null) {
+            Predicate predicate2
+                    = criteriaBuilder.equal(root.get("inn"), dto.getInn());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate2);
         }
         if (dto.getIsActive() != null) {
+            Predicate predicate3
+                    = criteriaBuilder.equal(root.get("isActive"), dto.getIsActive());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate3);
         }
         criteriaQuery.select(root).where(finalPredicate);

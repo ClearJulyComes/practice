@@ -27,38 +27,25 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public List<OrganizationListView> getAllActive(OrganizationListFilterDto dto) {
-        try {
-            List<Organization> organizations = organizationRepository.findList(dto);
-            if (organizations.isEmpty()){
-                throw new NoSuchElementException("No organization entities");
-            }
-            return mapperFacade.mapAsList(organizations, OrganizationListView.class);
-        }catch (NoSuchElementException e){
-            throw new RuntimeException("No organization entities", e);
+        List<Organization> organizations = organizationRepository.findList(dto);
+        if (organizations.isEmpty()){
+            throw new NoSuchElementException("No organization entities");
         }
+        return mapperFacade.mapAsList(organizations, OrganizationListView.class);
     }
 
     @Override
     public OrganizationIdView getOrganization(int id) {
-        try {
-            Organization organization = organizationRepository.findById(id)
-                    .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + id));
-            return mapperFacade.map(organization, OrganizationIdView.class);
-        }catch (NoSuchElementException e){
-            throw new RuntimeException("No organization entity by 'id'  " + id, e);
-        }
+        Organization organization = organizationRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + id));
+        return mapperFacade.map(organization, OrganizationIdView.class);
     }
 
     @Override
     public void update(OrganizationUpdateDto dto) {
-        try {
-            Organization organization = organizationRepository.findById(dto.getId())
-                    .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
-            mapperFacade.map(dto, organization);
-            organizationRepository.save(organization);
-        }catch (NoSuchElementException e){
-            throw new RuntimeException("No organization entity by 'id'  " + dto.getId(), e);
-        }
+        Organization organization = organizationRepository.findById(dto.getId())
+                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
+        mapperFacade.map(dto, organization);
     }
 
     @Override

@@ -1,11 +1,12 @@
 package com.example.practice.view.officeview;
 
 import lombok.Data;
-import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class OfficeListFilterDto {
-    @NonNull
+    @NotNull
     private Integer orgId;
     private String name;
     private String phone;

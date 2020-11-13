@@ -39,21 +39,21 @@ public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDt
         CriteriaQuery<Office> criteriaQuery = criteriaBuilder.createQuery(Office.class);
         Root<Office> root = criteriaQuery.from(Office.class);
         Predicate predicate1
-                = criteriaBuilder.equal(root.get("orgId").get("id"), dto.getOrgId());
-        Predicate predicate2
-                = criteriaBuilder.equal(root.get("name"), dto.getName());
-        Predicate predicate3
-                = criteriaBuilder.equal(root.get("phone"), dto.getPhone());
-        Predicate predicate4
-                = criteriaBuilder.equal(root.get("isActive"), dto.getIsActive());
+                = criteriaBuilder.equal(root.get("organization").get("id"), dto.getOrgId());
         Predicate finalPredicate = criteriaBuilder.and(predicate1);
         if (dto.getName() != null) {
+            Predicate predicate2
+                    = criteriaBuilder.equal(root.get("name"), dto.getName());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate2);
         }
         if (dto.getPhone() != null) {
+            Predicate predicate3
+                    = criteriaBuilder.equal(root.get("phone"), dto.getPhone());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate3);
         }
         if (dto.getIsActive() != null) {
+            Predicate predicate4
+                    = criteriaBuilder.equal(root.get("isActive"), dto.getIsActive());
             finalPredicate = criteriaBuilder.and(finalPredicate, predicate4);
         }
         criteriaQuery.select(root).where(finalPredicate);

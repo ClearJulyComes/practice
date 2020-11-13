@@ -2,20 +2,21 @@ package com.example.practice.view.organizationview;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 public class OrganizationSaveDto {
-    @NonNull
+    @NotNull
     private String name;
-    @NonNull
+    @NotNull
     private String fullName;
-    @NonNull
+    @NotNull
     private String inn;
-    @NonNull
+    @NotNull
     private String kpp;
-    @NonNull
+    @NotNull
     private String address;
     private String phone;
     private Boolean isActive;

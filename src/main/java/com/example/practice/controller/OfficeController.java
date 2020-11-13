@@ -2,7 +2,7 @@ package com.example.practice.controller;
 
 import com.example.practice.view.officeview.*;
 import com.example.practice.serviceinterface.OfficeService;
-import com.example.practice.view.userview.ResultView;
+import com.example.practice.view.ResultView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class OfficeController {
      * @return list of offices which satisfied for filter
      */
     @PostMapping("/list")
-    public List<OfficeListView> getOfficeList(@RequestBody OfficeListFilterDto dto) {
+    public List<OfficeListView> getOfficeList(@RequestBody @Valid OfficeListFilterDto dto) {
         return officeService.getAllActive(dto);
     }
 
@@ -60,7 +61,7 @@ public class OfficeController {
      * @return result status
      */
     @PostMapping("/update")
-    public ResultView updateOffice(@RequestBody OfficeUpdateDto dto) {
+    public ResultView updateOffice(@RequestBody @Valid OfficeUpdateDto dto) {
         officeService.update(dto);
         return new ResultView("Success");
     }
@@ -72,7 +73,7 @@ public class OfficeController {
      * @return result status
      */
     @PostMapping("/save")
-    public ResultView saveOffice(@RequestBody OfficeSaveDto dto) {
+    public ResultView saveOffice(@RequestBody @Valid OfficeSaveDto dto) {
         officeService.save(dto);
         return new ResultView("Success");
     }

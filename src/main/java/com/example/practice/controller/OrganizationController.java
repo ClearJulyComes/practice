@@ -2,7 +2,7 @@ package com.example.practice.controller;
 
 import com.example.practice.view.organizationview.*;
 import com.example.practice.serviceinterface.OrganizationService;
-import com.example.practice.view.userview.ResultView;
+import com.example.practice.view.ResultView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class OrganizationController {
      * @return list of organization's dto
      */
     @PostMapping("/list")
-    public List<OrganizationListView> getOrgList(@RequestBody OrganizationListFilterDto dto) {
+    public List<OrganizationListView> getOrgList(@RequestBody @Valid OrganizationListFilterDto dto) {
         return organizationService.getAllActive(dto);
     }
 
@@ -61,7 +62,7 @@ public class OrganizationController {
      * @return result status
      */
     @PostMapping("/update")
-    public ResultView updateOrg(@RequestBody OrganizationUpdateDto dto) {
+    public ResultView updateOrg(@RequestBody @Valid OrganizationUpdateDto dto) {
         organizationService.update(dto);
         return new ResultView("Success");
     }
@@ -73,7 +74,7 @@ public class OrganizationController {
      * @return result status
      */
     @PostMapping("/save")
-    public ResultView saveOrg(@RequestBody OrganizationSaveDto dto) {
+    public ResultView saveOrg(@RequestBody @Valid OrganizationSaveDto dto) {
         organizationService.save(dto);
         return new ResultView("Success");
     }
