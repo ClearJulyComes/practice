@@ -1,13 +1,11 @@
 package com.example.practice.view.userview;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 public class UserUpdateDto {
     @NotNull
     private int id;
@@ -23,5 +21,14 @@ public class UserUpdateDto {
     private Integer citizenshipCode;
     private String docName;
     private String docNumber;
-    private Date docDate;
+    private LocalDate docDate;
+
+    public UserUpdateDto(@NotNull int id, @NotNull String firstName, @NotNull String position) {
+        this.id = id;
+        this.firstName = firstName;
+        this.position = position;
+    }
+
+    public UserUpdateDto() {
+    }
 }

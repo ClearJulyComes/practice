@@ -38,7 +38,7 @@ public class UserController {
      * @param dto filter params
      * @return list of users satisfied to filter
      */
-    @PostMapping("/list")
+    @PostMapping(value = "/list", produces = "application/json;charset=UTF-8")
     public List<UserListView> getUserList(@RequestBody @Valid UserListFilterDto dto) {
         return userInfoService.findList(dto);
     }
@@ -49,7 +49,7 @@ public class UserController {
      * @param id id of searching user
      * @return user dto
      */
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json;charset=UTF-8")
     public UserIdView getUser(@PathVariable int id) {
         return userInfoService.findById(id);
     }
@@ -60,7 +60,7 @@ public class UserController {
      * @param dto new data of user
      * @return result status
      */
-    @PostMapping("/update")
+    @PostMapping(value = "/update", produces = "application/json;charset=UTF-8")
     public ResultView updateUser(@RequestBody @Valid UserUpdateDto dto) {
         userInfoService.update(dto);
         return new ResultView("Success");
@@ -72,7 +72,7 @@ public class UserController {
      * @param dto new user info
      * @return result status
      */
-    @PostMapping("/save")
+    @PostMapping(value = "/save", produces = "application/json;charset=UTF-8")
     public ResultView saveUser(@RequestBody @Valid UserSaveDto dto) {
         userInfoService.save(dto);
         return new ResultView("Success");

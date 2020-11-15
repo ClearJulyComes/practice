@@ -38,7 +38,7 @@ public class OfficeController {
      * @param id unique id for office finding
      * @return office dto
      */
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json;charset=UTF-8")
     public OfficeIdView getOffice(@PathVariable int id) {
         return officeService.getOffice(id);
     }
@@ -49,7 +49,7 @@ public class OfficeController {
      * @param dto for filtering offices
      * @return list of offices which satisfied for filter
      */
-    @PostMapping("/list")
+    @PostMapping(value = "/list", produces = "application/json;charset=UTF-8")
     public List<OfficeListView> getOfficeList(@RequestBody @Valid OfficeListFilterDto dto) {
         return officeService.getAllActive(dto);
     }
@@ -60,7 +60,7 @@ public class OfficeController {
      * @param dto new data for updating
      * @return result status
      */
-    @PostMapping("/update")
+    @PostMapping(value = "/update", produces = "application/json;charset=UTF-8")
     public ResultView updateOffice(@RequestBody @Valid OfficeUpdateDto dto) {
         officeService.update(dto);
         return new ResultView("Success");
@@ -72,7 +72,7 @@ public class OfficeController {
      * @param dto new office data for saving
      * @return result status
      */
-    @PostMapping("/save")
+    @PostMapping(value = "/save", produces = "application/json;charset=UTF-8")
     public ResultView saveOffice(@RequestBody @Valid OfficeSaveDto dto) {
         officeService.save(dto);
         return new ResultView("Success");

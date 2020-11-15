@@ -1,13 +1,11 @@
 package com.example.practice.view.userview;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 public class UserSaveDto {
     @NotNull
     private Integer officeId;
@@ -24,6 +22,16 @@ public class UserSaveDto {
     private Integer docCode;
     private String docName;
     private String docNumber;
-    private Date docDate;
+    private LocalDate docDate;
 
+    public UserSaveDto(@NotNull Integer officeId, @NotNull String firstName, @NotNull String position,
+                       @NotNull Boolean isIdentified) {
+        this.officeId = officeId;
+        this.firstName = firstName;
+        this.position = position;
+        this.isIdentified = isIdentified;
+    }
+
+    public UserSaveDto() {
+    }
 }

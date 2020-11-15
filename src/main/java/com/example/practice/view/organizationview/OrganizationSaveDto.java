@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 
 @Data
-@NoArgsConstructor
 public class OrganizationSaveDto {
     @NotNull
     private String name;
@@ -20,4 +19,16 @@ public class OrganizationSaveDto {
     private String address;
     private String phone;
     private Boolean isActive;
+
+    public OrganizationSaveDto() {
+    }
+
+    public OrganizationSaveDto(@NotNull String name, @NotNull String fullName, @NotNull String inn,
+                               @NotNull String kpp, @NotNull String address) {
+        this.name = name;
+        this.fullName = fullName;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.address = address;
+    }
 }

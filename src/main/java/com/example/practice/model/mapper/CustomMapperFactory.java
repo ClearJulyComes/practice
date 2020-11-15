@@ -31,6 +31,7 @@ public class CustomMapperFactory  {
                 .build();
         mapperFactory.classMap(UserInfo.class, UserIdView.class)
                 .exclude("version")
+                .exclude("version")
                 .field("userDoc.doc.name", "docName")
                 .field("userDoc.docNumber", "docNumber")
                 .field("userDoc.docDate", "docDate")

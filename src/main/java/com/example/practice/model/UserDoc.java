@@ -1,9 +1,11 @@
 package com.example.practice.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.sql.Date;
 
 @Data
 @Entity
@@ -21,14 +23,14 @@ public class UserDoc {
     private String docNumber;
 
     @Column(name = "doc_date", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date docDate;
+    private LocalDate docDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_id")
     private Doc doc;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     @MapsId
     @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
@@ -37,10 +39,12 @@ public class UserDoc {
 
     }
 
-    public UserDoc(String docNumber, Date docDate, Doc doc) {
+    public UserDoc(String docNumber, LocalDate docDate) {
         this.docNumber = docNumber;
         this.docDate = docDate;
-        this.doc = doc;
     }
 
+    public void setDocDate(Date docDate) {
+        this.docDate = docDate.toLocalDate();
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.practice.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -45,6 +46,7 @@ public class UserInfo {
     private Country country;
 
     @OneToOne(mappedBy = "userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     @PrimaryKeyJoinColumn(name = "user_info_id")
     private UserDoc userDoc;
 
@@ -52,9 +54,8 @@ public class UserInfo {
 
     }
 
-    public UserInfo(int id, String firstName, Office office) {
+    public UserInfo(int id, String firstName) {
         this.id = id;
         this.firstName = firstName;
-        this.office = office;
     }
 }

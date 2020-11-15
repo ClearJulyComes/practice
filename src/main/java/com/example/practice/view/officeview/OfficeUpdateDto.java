@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 
 @Data
-@NoArgsConstructor
 public class OfficeUpdateDto {
     @NotNull
     private int id;
@@ -16,4 +15,13 @@ public class OfficeUpdateDto {
     private String address;
     private String phone;
     private Boolean isActive;
+
+    public OfficeUpdateDto() {
+    }
+
+    public OfficeUpdateDto(@NotNull int id, @NotNull String name, @NotNull String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
 }

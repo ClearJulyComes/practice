@@ -10,9 +10,13 @@ public class OfficeSaveDto {
     private String name;
     private String phone;
     private String address;
-    private Boolean isActive = true;
+    private Boolean isActive;
 
     public OfficeSaveDto() {
     }
 
+    public OfficeSaveDto(@NotNull Integer orgId, String name) {
+        this.orgId = orgId;
+        this.name = name;
+    }
 }

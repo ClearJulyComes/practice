@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -58,15 +59,20 @@ public class UserInfoServiceImpl implements UserInfoService {
         Office office = officeRepository.findById(dto.getOfficeId())
                 .orElseThrow(() -> new NoSuchElementException("Нет элементов удовлетворяющих данному запросу"));
         user.setOffice(office);
-        Country country = countryRepository.findByCode(dto.getCitizenshipCode());
-        user.setCountry(country);
-        Doc doc = docRepository.findByCode(dto.getDocCode());
-        if (!doc.getName().equals(dto.getDocName())) {
-            throw new WrongPropertyException("Doc name and Doc code not equals.");
+        if (dto.getCitizenshipCode()!=null) {
+            Country country = countryRepository.findByCode(dto.getCitizenshipCode());
+            user.setCountry(country);
         }
-        UserDoc userDoc = new UserDoc(dto.getDocNumber(), dto.getDocDate(), doc);
-        userDoc.setUserInfo(user);
-        user.setUserDoc(userDoc);
+        if (dto.getDocCode()!=null) {
+            Doc doc = docRepository.findByCode(dto.getDocCode());
+            UserDoc userDoc = new UserDoc(dto.getDocNumber(), dto.getDocDate());
+            userDoc.setDoc(doc);
+            user.setUserDoc(userDoc);
+            userDoc.setUserInfo(user);
+            if (!doc.getName().equals(dto.getDocName())) {
+                throw new WrongPropertyException("Doc name and Doc code not equals.");
+            }
+        }
         userInfoRepository.save(user);
     }
 
@@ -75,16 +81,22 @@ public class UserInfoServiceImpl implements UserInfoService {
         UserInfo user = userInfoRepository.findById(dto.getId())
                 .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
         mapperFacade.map(dto, user);
-        Office office = officeRepository.findById(dto.getOfficeId())
-                .orElseThrow(() -> new NoSuchElementException("Нет элементов удовлетворяющих данному запросу"));
-        user.setOffice(office);
-        Doc doc = docRepository.findByName(dto.getDocName());
-        UserDoc userDoc = user.getUserDoc();
-        userDoc.setDocDate(dto.getDocDate());
-        userDoc.setDoc(doc);
-        userDoc.setDocNumber(dto.getDocNumber());
-        user.setUserDoc(userDoc);
-        Country country = countryRepository.findByCode(dto.getCitizenshipCode());
-        user.setCountry(country);
+        if (dto.getOfficeId()!=null) {
+            Office office = officeRepository.findById(dto.getOfficeId())
+                    .orElseThrow(() -> new NoSuchElementException("Нет элементов удовлетворяющих данному запросу"));
+            user.setOffice(office);
+        }
+        if (dto.getDocName()!=null) {
+            Doc doc = docRepository.findByName(dto.getDocName());
+            UserDoc userDoc = user.getUserDoc();
+            userDoc.setDocDate(Date.valueOf(dto.getDocDate()));
+            userDoc.setDoc(doc);
+            userDoc.setDocNumber(dto.getDocNumber());
+            user.setUserDoc(userDoc);
+        }
+        if (dto.getCitizenshipCode()!=null) {
+            Country country = countryRepository.findByCode(dto.getCitizenshipCode());
+            user.setCountry(country);
+        }
     }
 }

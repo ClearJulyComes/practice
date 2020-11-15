@@ -2,7 +2,8 @@ package com.example.practice.view.userview;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Data
 public class UserIdView {
@@ -17,10 +18,10 @@ public class UserIdView {
     private String citizenshipName;
     private String docName;
     private String docNumber;
-    private Date docDate;
+    private String docDate;
 
     public UserIdView(int id, String firstName, Boolean isIdentified, Integer citizenshipCode,
-                      String citizenshipName, String docName, String docNumber, Date docDate) {
+                      String citizenshipName, String docName, String docNumber, String docDate) {
         this.id = id;
         this.firstName = firstName;
         this.isIdentified = isIdentified;

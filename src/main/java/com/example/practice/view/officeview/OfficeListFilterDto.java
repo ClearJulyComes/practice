@@ -12,7 +12,11 @@ public class OfficeListFilterDto {
     private String phone;
     private Boolean isActive;
 
-    public OfficeListFilterDto() {
+    public OfficeListFilterDto(@NotNull Integer orgId, String name) {
+        this.orgId = orgId;
+        this.name = name;
+    }
 
+    public OfficeListFilterDto() {
     }
 }

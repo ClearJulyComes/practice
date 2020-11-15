@@ -15,7 +15,7 @@ import org.springframework.test.context.TestContextManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
-
+/*
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class UserInfoRepositoryTest {
@@ -40,3 +40,4 @@ public class UserInfoRepositoryTest {
         Assert.assertEquals(expected, actual);
     }
 }
+*/

@@ -39,7 +39,7 @@ public class OrganizationController {
      * @param dto filter
      * @return list of organization's dto
      */
-    @PostMapping("/list")
+    @PostMapping(value = "/list", produces = "application/json;charset=UTF-8")
     public List<OrganizationListView> getOrgList(@RequestBody @Valid OrganizationListFilterDto dto) {
         return organizationService.getAllActive(dto);
     }
@@ -50,7 +50,7 @@ public class OrganizationController {
      * @param id unique id of searching organization
      * @return organization dto
      */
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json;charset=UTF-8")
     public OrganizationIdView getOrg(@PathVariable int id) {
         return organizationService.getOrganization(id);
     }
@@ -61,7 +61,7 @@ public class OrganizationController {
      * @param dto new organization params
      * @return result status
      */
-    @PostMapping("/update")
+    @PostMapping(value = "/update", produces = "application/json;charset=UTF-8")
     public ResultView updateOrg(@RequestBody @Valid OrganizationUpdateDto dto) {
         organizationService.update(dto);
         return new ResultView("Success");
@@ -73,7 +73,7 @@ public class OrganizationController {
      * @param dto params of new organization
      * @return result status
      */
-    @PostMapping("/save")
+    @PostMapping(value = "/save", produces = "application/json;charset=UTF-8")
     public ResultView saveOrg(@RequestBody @Valid OrganizationSaveDto dto) {
         organizationService.save(dto);
         return new ResultView("Success");

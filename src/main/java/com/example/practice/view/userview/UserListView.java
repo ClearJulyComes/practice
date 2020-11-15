@@ -10,12 +10,10 @@ public class UserListView {
     private String middleName;
     private String position;
 
-    public UserListView(int id, String firstName, String secondName, String middleName, String position) {
+    public UserListView(int id, String firstName, String position) {
         this.id = id;
         this.firstName = firstName;
-        this.secondName = secondName;
-        this.middleName = middleName;
-        this.firstName = position;
+        this.position = position;
     }
 
     public UserListView() {

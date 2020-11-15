@@ -1,12 +1,10 @@
 package com.example.practice.view.userview;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-@NoArgsConstructor
 public class UserListFilterDto {
     @NotNull
     private Integer officeId;
@@ -16,4 +14,12 @@ public class UserListFilterDto {
     private String position;
     private Integer citizenshipCode;
     private Integer docCode;
+
+    public UserListFilterDto() {
+    }
+
+    public UserListFilterDto(@NotNull Integer officeId, String firstName) {
+        this.officeId = officeId;
+        this.firstName = firstName;
+    }
 }

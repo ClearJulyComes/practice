@@ -256,13 +256,11 @@ INSERT INTO Doc (code, name ) VALUES ( 10, 'Паспорт инностранн�
 INSERT INTO Doc (code, name ) VALUES ( 11, 'Свидетельство о рассмотрении лица кем то там' );
 INSERT INTO Doc (code, name ) VALUES ( 12, 'Вид на жительство инностранным гражданином' );
 INSERT INTO Doc (code, name ) VALUES ( 13, 'Удостоверение беженца' );
-INSERT INTO Doc (code, name ) VALUES ( 15, 'Разрешение на временное проживание в Российской Федерации' );
-INSERT INTO Doc (code, name ) VALUES ( 18, 'Свидетельство о предоставлении временного убежища на территории Российской' ||
- ' Федерации' );
+INSERT INTO Doc (code, name ) VALUES ( 15, 'Разрешение на временное проживание в России' );
+INSERT INTO Doc (code, name ) VALUES ( 18, 'Свидетельство о рождении на территории РФ' );
 INSERT INTO Doc (code, name ) VALUES ( 21, 'Паспорт гражданина Российской Федерации' );
-INSERT INTO Doc (code, name ) VALUES ( 23, 'Свидетельство о рождении, выданное уполномоченным органом
-иностранного государства' );
-INSERT INTO Doc (code, name ) VALUES ( 24, 'Удостоверение личности военнослужащего Российской Федерации' );
+INSERT INTO Doc (code, name ) VALUES ( 23, 'Свидетельство о рождении, выданное иностранным государством' );
+INSERT INTO Doc (code, name ) VALUES ( 24, 'Удостоверение личности военного' );
 INSERT INTO Doc (code, name ) VALUES ( 91, 'Иные документы' );
 
 INSERT INTO User_Info (id, version, office_id, first_name, position, country_id ) VALUES ( 1, 0, 1, 'Viktor', 'Director', 4 );
@@ -272,8 +270,8 @@ INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 4
 INSERT INTO User_Info (id, version, office_id, first_name, position ) VALUES ( 5, 0, 3, 'Andrey', 'HR' );
 
 
-INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 1, 0, 1, '1111', '2011-11-22' );
-INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 2, 0, 3, '1112', '2010-08-02' );
-INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 3, 0, 2, '2311', '2008-02-01' );
-INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 4, 0, 2, '3344', '2015-10-13' );
-INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 5, 0, 4, '2433', '2014-08-12' );
+INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 1, 0, 1, '1111', CAST('2011-11-22' AS DATE) );
+INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 2, 0, 3, '1112', CAST('2010-08-02' AS DATE) );
+INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 3, 0, 2, '2311', CAST('2008-02-01' AS DATE) );
+INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 4, 0, 2, '3344', CAST('2015-10-13' AS DATE) );
+INSERT INTO User_Doc (user_info_id, version, doc_id, doc_number, doc_date ) VALUES ( 5, 0, 4, '2433', CAST('2014-08-12' AS DATE) );
