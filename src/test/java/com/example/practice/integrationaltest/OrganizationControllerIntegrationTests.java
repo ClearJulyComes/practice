@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(locations = "classpath:test-context.xml")
+@SpringBootTest
 @AutoConfigureMockMvc
 public class OrganizationControllerIntegrationTests {
     @Autowired

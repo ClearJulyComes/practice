@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/*@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 @DataJpaTest
 public class OrganizationRepositoryTests {
 
@@ -51,4 +51,4 @@ public class OrganizationRepositoryTests {
 
         Assert.assertEquals(expected, actual);
     }
-} */
+}
