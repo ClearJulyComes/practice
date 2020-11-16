@@ -3,6 +3,8 @@ package com.example.practice.controller;
 import com.example.practice.customexception.WrongPropertyException;
 import com.example.practice.view.DataError;
 import com.example.practice.view.DataSuccess;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,9 @@ import java.util.NoSuchElementException;
  */
 @ControllerAdvice
 public class RestResponseExceptionHandler implements ResponseBodyAdvice<Object> {
+
+    private static final Logger logger = LoggerFactory.getLogger(RestResponseExceptionHandler.class);
+
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         return true;
@@ -71,6 +76,7 @@ public class RestResponseExceptionHandler implements ResponseBodyAdvice<Object> 
         }else {
             bodyOfResponse = "Internal error";
         }
+        logger.warn(bodyOfResponse, ex);
         DataError dataError = new DataError(bodyOfResponse);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dataError);
     }
