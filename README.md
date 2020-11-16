@@ -206,20 +206,23 @@ Ok->Open as Project
     {
       "officeId":"", //обязательный параметр
       "firstName":"",
-      "lastName":"",
+      "secondName":"",
       "middleName":"",
       "position","",
       "docCode":"",
       "citizenshipCode":""
     }
     Out:
-    {
+    [
+     {
       "id":"",
       "firstName":"",
       "secondName":"",
       "middleName":"",
       "position":""
-    }
+     },
+    ...
+    ]
     
     10. api/user/{id}
     method:GET
