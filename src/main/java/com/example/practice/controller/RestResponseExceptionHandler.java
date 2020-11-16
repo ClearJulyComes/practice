@@ -5,7 +5,6 @@ import com.example.practice.view.DataError;
 import com.example.practice.view.DataSuccess;
 import org.springframework.core.MethodParameter;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.NoSuchElementException;
 
@@ -26,7 +24,7 @@ import java.util.NoSuchElementException;
  * Exception handler aspect
  */
 @ControllerAdvice
-public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
+public class RestResponseExceptionHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         return true;
@@ -53,66 +51,27 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     /**
-     * Handling exception when finding value not found
+     * Handling exception
      * @param ex exception
      * @param request request
      * @return response body
      */
-    @ExceptionHandler(value = {EmptyResultDataAccessException.class, NoSuchElementException.class })
+    @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<Object> handleConflict(
-            RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Request value not found";
+            Exception ex, WebRequest request) {
+        String bodyOfResponse;
+        if (ex.getClass() == EmptyResultDataAccessException.class || ex.getClass()== NoSuchElementException.class) {
+            bodyOfResponse = "Request value not found";
+        }else if (ex.getClass() == WrongPropertyException.class){
+            bodyOfResponse = "Wrong property selected";
+        }else if (ex.getClass() == HttpMessageNotReadableException.class){
+            bodyOfResponse = "Wrong property type";
+        }else if (ex.getClass() == MethodArgumentNotValidException.class){
+            bodyOfResponse = "Non null property a null";
+        }else {
+            bodyOfResponse = "Internal error";
+        }
         DataError dataError = new DataError(bodyOfResponse);
-        return handleExceptionInternal(ex, dataError,
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-
-    /**
-     * Handling exception when selected wrong value
-     * @param ex exception
-     * @param request request
-     * @return response body
-     */
-    @ExceptionHandler(value = { WrongPropertyException.class })
-    protected ResponseEntity<Object> handleSaveConflict(
-            RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Wrong property selected";
-        DataError dataError = new DataError(bodyOfResponse);
-        return handleExceptionInternal(ex, dataError,
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-
-    /**
-     * Handling exception when request param have wrong type
-     * @param ex exception
-     * @param headers headers
-     * @param status status
-     * @param request request
-     * @return response body
-     */
-    @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        String bodyOfResponse = "Wrong property type";
-        DataError dataError = new DataError(bodyOfResponse);
-        return handleExceptionInternal(ex, dataError,
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-
-    /**
-     * Handling situation when non null value a null
-     * @param ex exception
-     * @param headers headers
-     * @param status status
-     * @param request request
-     * @return response body
-     */
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status,
-                                                                  WebRequest request) {
-        String bodyOfResponse = "Non null property a null";
-        DataError dataError = new DataError(bodyOfResponse);
-        return handleExceptionInternal(ex, dataError,
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dataError);
     }
 }
