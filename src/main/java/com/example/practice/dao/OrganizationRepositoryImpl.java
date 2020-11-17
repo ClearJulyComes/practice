@@ -13,7 +13,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Repository for working with organization entity
@@ -73,9 +72,9 @@ public class OrganizationRepositoryImpl implements CustomRepository<Organization
      * @return optional organization entity
      */
     @Override
-    public Optional<Organization> findById(int id) {
+    public Organization findById(int id) {
         TypedQuery<Organization> query = entityManager.createNamedQuery("findById", Organization.class);
         query.setParameter("id", id);
-        return Optional.ofNullable(query.getSingleResult());
+        return query.getSingleResult();
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -42,23 +41,20 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     public OfficeIdView getOffice(int id) {
-        Office office = officeRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("No office entity by 'id' " + id));
+        Office office = officeRepository.findById(id);
         return mapperFacade.map(office, OfficeIdView.class);
     }
 
     @Override
     public void update(OfficeUpdateDto dto) {
-        Office office = officeRepository.findById(dto.getId())
-                .orElseThrow(() -> new NoSuchElementException("No office entity by 'id' " + dto.getId()));
+        Office office = officeRepository.findById(dto.getId());
         mapperFacade.map(dto, office);
     }
 
     @Override
     public void save(OfficeSaveDto dto) {
         Office office = mapperFacade.map(dto, Office.class);
-        Organization organization = organizationRepository.findById(dto.getOrgId())
-                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id' " + dto.getOrgId()));
+        Organization organization = organizationRepository.findById(dto.getOrgId());
         office.setOrganization(organization);
         officeRepository.save(office);
     }

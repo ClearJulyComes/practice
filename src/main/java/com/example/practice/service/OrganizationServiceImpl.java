@@ -36,15 +36,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public OrganizationIdView getOrganization(int id) {
-        Organization organization = organizationRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + id));
+        Organization organization = organizationRepository.findById(id);
         return mapperFacade.map(organization, OrganizationIdView.class);
     }
 
     @Override
     public void update(OrganizationUpdateDto dto) {
-        Organization organization = organizationRepository.findById(dto.getId())
-                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
+        Organization organization = organizationRepository.findById(dto.getId());
         mapperFacade.map(dto, organization);
     }
 

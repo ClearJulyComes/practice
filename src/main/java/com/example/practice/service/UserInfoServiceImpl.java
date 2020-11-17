@@ -48,16 +48,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserIdView findById(int id) {
-        UserInfo user = userInfoRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Нет элементов удовлетворяющих данному запросу"));
+        UserInfo user = userInfoRepository.findById(id);
         return mapperFacade.map(user, UserIdView.class);
     }
 
     @Override
     public void save(UserSaveDto dto) {
         UserInfo user = mapperFacade.map(dto, UserInfo.class);
-        Office office = officeRepository.findById(dto.getOfficeId())
-                .orElseThrow(() -> new NoSuchElementException("Нет элементов удовлетворяющих данному запросу"));
+        Office office = officeRepository.findById(dto.getOfficeId());
         user.setOffice(office);
         if (dto.getCitizenshipCode()!=null) {
             Country country = countryRepository.findByCode(dto.getCitizenshipCode());
@@ -78,12 +76,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public void update(UserUpdateDto dto) {
-        UserInfo user = userInfoRepository.findById(dto.getId())
-                .orElseThrow(() -> new NoSuchElementException("No organization entity by 'id'  " + dto.getId()));
+        UserInfo user = userInfoRepository.findById(dto.getId());
         mapperFacade.map(dto, user);
         if (dto.getOfficeId()!=null) {
-            Office office = officeRepository.findById(dto.getOfficeId())
-                    .orElseThrow(() -> new NoSuchElementException("Нет элементов удовлетворяющих данному запросу"));
+            Office office = officeRepository.findById(dto.getOfficeId());
             user.setOffice(office);
         }
         if (dto.getDocName()!=null) {

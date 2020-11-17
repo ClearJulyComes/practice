@@ -17,10 +17,10 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 /**
  * Exception handler aspect
@@ -58,26 +58,37 @@ public class RestResponseExceptionHandler implements ResponseBodyAdvice<Object> 
     /**
      * Handling exception
      * @param ex exception
-     * @param request request
      * @return response body
      */
     @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<Object> handleConflict(
-            Exception ex, WebRequest request) {
+            Exception ex) {
         String bodyOfResponse;
+        DataError dataError;
+        ResponseEntity.BodyBuilder result;
+        UUID uuid = UUID.randomUUID();
         if (ex.getClass() == EmptyResultDataAccessException.class || ex.getClass()== NoSuchElementException.class) {
-            bodyOfResponse = "Request value not found";
+            bodyOfResponse = "Request value not found. Error UUID: " + uuid;
+            logger.warn(bodyOfResponse, ex);
+            result = ResponseEntity.status(HttpStatus.NOT_FOUND);
         }else if (ex.getClass() == WrongPropertyException.class){
-            bodyOfResponse = "Wrong property selected";
+            bodyOfResponse = "Wrong property selected. Error UUID: " + uuid;
+            logger.warn(bodyOfResponse, ex);
+            result = ResponseEntity.status(HttpStatus.NOT_FOUND);
         }else if (ex.getClass() == HttpMessageNotReadableException.class){
-            bodyOfResponse = "Wrong property type";
+            bodyOfResponse = "Wrong property type. Error UUID: " + uuid;
+            logger.warn(bodyOfResponse, ex);
+            result = ResponseEntity.status(HttpStatus.BAD_REQUEST);
         }else if (ex.getClass() == MethodArgumentNotValidException.class){
-            bodyOfResponse = "Non null property a null";
+            bodyOfResponse = "Non null property a null. Error UUID: " + uuid;
+            logger.warn(bodyOfResponse, ex);
+            result = ResponseEntity.status(HttpStatus.BAD_REQUEST);
         }else {
-            bodyOfResponse = "Internal error";
+            bodyOfResponse = "Internal error. Error UUID: " + uuid;
+            logger.error(bodyOfResponse, ex);
+            result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        logger.warn(bodyOfResponse, ex);
-        DataError dataError = new DataError(bodyOfResponse);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dataError);
+        dataError = new DataError(bodyOfResponse);
+        return result.body(dataError);
     }
 }

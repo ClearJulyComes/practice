@@ -93,9 +93,9 @@ public class UserInfoRepositoryImpl implements CustomRepository<UserListFilterDt
      * @return optional user entity
      */
     @Override
-    public Optional<UserInfo> findById(int id) {
+    public UserInfo findById(int id) {
         TypedQuery<UserInfo> query = entityManager.createNamedQuery("findUserById", UserInfo.class);
         query.setParameter("id", id);
-        return Optional.ofNullable(query.getSingleResult());
+        return query.getSingleResult();
     }
 }

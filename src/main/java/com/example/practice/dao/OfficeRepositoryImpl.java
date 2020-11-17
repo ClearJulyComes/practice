@@ -12,7 +12,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 /**
  * Repository for working with office entity
@@ -77,7 +77,11 @@ public class OfficeRepositoryImpl implements CustomRepository<OfficeListFilterDt
      * @return optional office entity
      */
     @Override
-    public Optional<Office> findById(int id) {
-        return Optional.ofNullable(entityManager.find(Office.class, id));
+    public Office findById(int id) {
+        Office office = entityManager.find(Office.class, id);
+        if(office==null){
+            throw new NoSuchElementException("Нет элементов удовлетворяющих поиску");
+        }
+        return office;
     }
 }

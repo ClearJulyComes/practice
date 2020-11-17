@@ -24,7 +24,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {CustomMapperFactory.class, CustomMapperFacadeImpl.class,
@@ -79,7 +78,7 @@ public class OrganizationServiceTests {
                 "34284438932", "1111333432", "Moscow, 22");
         Organization organization = new Organization(1, 0, "Cola", "Coca-Cola",
                 "34284438932", "1111333432", "Moscow, 22");
-        Mockito.when(organizationRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(organization));
+        Mockito.when(organizationRepository.findById(Mockito.anyInt())).thenReturn(organization);
         OrganizationIdView actual = organizationService.getOrganization(1);
         Assert.assertEquals(expected, actual);
 

@@ -8,5 +8,5 @@ public interface CustomRepository<F, E> {
 
     void save(E entity);
 
-    Optional<E> findById(int id);
+    E findById(int id);
 }
